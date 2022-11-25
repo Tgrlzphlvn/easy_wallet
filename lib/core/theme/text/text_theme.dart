@@ -54,5 +54,11 @@ class WalletLightTextTheme with BaseSingleton {
           color: walletColors.eerieBlack,
           wordSpacing: 2,
         ),
+        bodyText1: GoogleFonts.philosopher(
+          fontSize: 8,
+          fontWeight: FontWeight.bold,
+          color: walletColors.eerieBlack,
+          wordSpacing: 2,
+        ),
       );
 }

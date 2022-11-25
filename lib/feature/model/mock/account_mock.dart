@@ -17,5 +17,5 @@ class AccountMock {
       expenses: [
         Expense(
             const Icon(Icons.insert_chart), ExpenseProductTypes.other, 'Empty', 0)
-      ]);
+      ],);
 }

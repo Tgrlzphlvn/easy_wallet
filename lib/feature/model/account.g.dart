@@ -27,7 +27,6 @@ class AccountAdapter extends TypeAdapter<Account> {
       ..id = fields[0] as String
       ..createdTime = fields[1] as DateTime;
   }
-
   @override
   void write(BinaryWriter writer, Account obj) {
     writer

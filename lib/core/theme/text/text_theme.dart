@@ -12,49 +12,49 @@ class WalletLightTextTheme with BaseSingleton {
   WalletLightTextTheme._init();
 
   TextTheme get textTheme => TextTheme(
-        headline3: GoogleFonts.philosopher(
+        headline3: GoogleFonts.rubik(
           fontSize: 30,
           fontWeight: FontWeight.bold,
           color: walletColors.eerieBlack,
           wordSpacing: 2,
         ),
-        headline4: GoogleFonts.philosopher(
+        headline4: GoogleFonts.rubik(
           fontSize: 24,
           fontWeight: FontWeight.bold,
           color: walletColors.white,
           wordSpacing: 2,
         ),
-        headline5: GoogleFonts.philosopher(
+        headline5: GoogleFonts.rubik(
           fontSize: 18,
           fontWeight: FontWeight.bold,
           color: walletColors.eerieBlack,
           wordSpacing: 2,
         ),
-        subtitle1: GoogleFonts.philosopher(
+        subtitle1: GoogleFonts.rubik(
           fontSize: 14,
           fontWeight: FontWeight.bold,
           color: walletColors.white,
           wordSpacing: 2,
         ),
-        subtitle2: GoogleFonts.philosopher(
+        subtitle2: GoogleFonts.rubik(
           fontSize: 12,
           fontWeight: FontWeight.bold,
           color: walletColors.white,
           wordSpacing: 2,
         ),
-        button: GoogleFonts.philosopher(
+        button: GoogleFonts.rubik(
           fontSize: 16,
           fontWeight: FontWeight.bold,
           color: walletColors.eerieBlack,
           wordSpacing: 2,
         ),
-        caption: GoogleFonts.philosopher(
+        caption: GoogleFonts.rubik(
           fontSize: 10,
           fontWeight: FontWeight.bold,
           color: walletColors.eerieBlack,
           wordSpacing: 2,
         ),
-        bodyText1: GoogleFonts.philosopher(
+        bodyText1: GoogleFonts.rubik(
           fontSize: 8,
           fontWeight: FontWeight.bold,
           color: walletColors.eerieBlack,

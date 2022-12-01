@@ -21,12 +21,13 @@ class AccountAdapter extends TypeAdapter<Account> {
       accounHolderName: fields[3] as String,
       accountNumber: fields[4] as int?,
       currencyUnit: fields[5] as CurrencyUnit,
-      expenses: (fields[6] as List).cast<Expense>(),
-      income: (fields[7] as List).cast<Income>(),
+      expenses: (fields[6] as List?)?.cast<Expense>(),
+      income: (fields[7] as List?)?.cast<Income>(),
     )
       ..id = fields[0] as String
       ..createdTime = fields[1] as DateTime;
   }
+
   @override
   void write(BinaryWriter writer, Account obj) {
     writer
@@ -71,7 +72,7 @@ class ExpenseAdapter extends TypeAdapter<Expense> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Expense(
-      fields[2] as Icon,
+      fields[2] as IconData,
       fields[3] as ExpenseProductTypes,
       fields[4] as String,
       fields[5] as int,
@@ -123,6 +124,7 @@ class IncomeAdapter extends TypeAdapter<Income> {
       fields[2] as String,
       fields[3] as IncomeTypes,
       fields[4] as int,
+      fields[5] as IconData,
     )
       ..id = fields[0] as String
       ..createdTime = fields[1] as DateTime;
@@ -131,7 +133,7 @@ class IncomeAdapter extends TypeAdapter<Income> {
   @override
   void write(BinaryWriter writer, Income obj) {
     writer
-      ..writeByte(5)
+      ..writeByte(6)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -141,7 +143,9 @@ class IncomeAdapter extends TypeAdapter<Income> {
       ..writeByte(3)
       ..write(obj.incomeType)
       ..writeByte(4)
-      ..write(obj.amount);
+      ..write(obj.amount)
+      ..writeByte(5)
+      ..write(obj.icon);
   }
 
   @override
@@ -165,27 +169,19 @@ class CurrencyUnitAdapter extends TypeAdapter<CurrencyUnit> {
       case 0:
         return CurrencyUnit.turkishLira;
       case 1:
-        return CurrencyUnit.azerbaijanManat;
-      case 2:
         return CurrencyUnit.americanDollar;
-      case 3:
+      case 2:
         return CurrencyUnit.euro;
-      case 4:
+      case 3:
         return CurrencyUnit.russianRuble;
-      case 5:
-        return CurrencyUnit.isrealSeqel;
-      case 6:
-        return CurrencyUnit.polandZloty;
-      case 7:
+      case 4:
         return CurrencyUnit.englishSterlin;
-      case 8:
+      case 5:
         return CurrencyUnit.canadanDollar;
-      case 9:
-        return CurrencyUnit.denmarkKron;
-      case 10:
-        return CurrencyUnit.swedenKron;
-      case 11:
-        return CurrencyUnit.norwayKron;
+      case 6:
+        return CurrencyUnit.japaneseYen;
+      case 7:
+        return CurrencyUnit.chineseYuan;
       default:
         return CurrencyUnit.turkishLira;
     }
@@ -197,38 +193,26 @@ class CurrencyUnitAdapter extends TypeAdapter<CurrencyUnit> {
       case CurrencyUnit.turkishLira:
         writer.writeByte(0);
         break;
-      case CurrencyUnit.azerbaijanManat:
+      case CurrencyUnit.americanDollar:
         writer.writeByte(1);
         break;
-      case CurrencyUnit.americanDollar:
+      case CurrencyUnit.euro:
         writer.writeByte(2);
         break;
-      case CurrencyUnit.euro:
+      case CurrencyUnit.russianRuble:
         writer.writeByte(3);
         break;
-      case CurrencyUnit.russianRuble:
+      case CurrencyUnit.englishSterlin:
         writer.writeByte(4);
         break;
-      case CurrencyUnit.isrealSeqel:
+      case CurrencyUnit.canadanDollar:
         writer.writeByte(5);
         break;
-      case CurrencyUnit.polandZloty:
+      case CurrencyUnit.japaneseYen:
         writer.writeByte(6);
         break;
-      case CurrencyUnit.englishSterlin:
+      case CurrencyUnit.chineseYuan:
         writer.writeByte(7);
-        break;
-      case CurrencyUnit.canadanDollar:
-        writer.writeByte(8);
-        break;
-      case CurrencyUnit.denmarkKron:
-        writer.writeByte(9);
-        break;
-      case CurrencyUnit.swedenKron:
-        writer.writeByte(10);
-        break;
-      case CurrencyUnit.norwayKron:
-        writer.writeByte(11);
         break;
     }
   }

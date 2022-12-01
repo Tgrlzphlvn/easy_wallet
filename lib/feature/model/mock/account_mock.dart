@@ -3,19 +3,11 @@ import 'package:flutter/material.dart';
 
 class AccountMock {
   static Account mockAccount = Account(
-      accountName: 'Empty',
-      accounHolderName: 'Account name',
-      accountNumber: 55678,
-      currencyUnit: CurrencyUnit.americanDollar,
-      income: [
-        Income(
-          'Salary',
-          IncomeTypes.salary,
-          17990,
-        )
-      ],
-      expenses: [
-        Expense(
-            const Icon(Icons.insert_chart), ExpenseProductTypes.other, 'Empty', 0)
-      ],);
+    accountName: 'Empty',
+    accounHolderName: 'Account name',
+    accountNumber: 55678,
+    currencyUnit: CurrencyUnit.americanDollar,
+    income: [Income('Salary', IncomeTypes.salary, 17990, Icons.abc)],
+    expenses: [Expense(Icons.insert_chart, ExpenseProductTypes.other, 'Empty', 0)],
+  );
 }

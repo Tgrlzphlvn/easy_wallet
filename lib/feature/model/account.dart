@@ -1,5 +1,4 @@
 import 'package:easy_wallet_v2/product/constants/hive_constants.dart';
-import 'package:easy_wallet_v2/product/enums/asset_helper_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:uuid/uuid.dart';
@@ -33,55 +32,6 @@ class Account extends HiveObject {
     this.expenses,
     this.income,
   });
-
-  int subIncomes() {
-    int total = 0;
-    if (income != null) {
-      for (var i in income!) {
-        total += i.amount;
-      }
-      return total;
-    }
-    return total;
-  }
-
-  int subExpenses() {
-    int total = 0;
-    if (expenses != null) {
-      for (var i in expenses!) {
-        total += i.amount;
-      }
-      return total;
-    }
-    return total;
-  }
-
-  int incomeExpenseAvarage() {
-    return subIncomes() - subExpenses();
-  }
-
-  AssetHelperEnum cardImageController() {
-    String number = accountNumber.toString();
-    switch (number.characters.first) {
-      case '4':
-        return AssetHelperEnum.visa;
-      case '5':
-        return AssetHelperEnum.mastercard;
-      default:
-        return AssetHelperEnum.defaultLogo;
-    }
-  }
-
-  String accountNumberValidatator() {
-    String firstNumber = accountNumber.toString().characters.first;
-    List<String> otherNumbers = accountNumber.toString().characters.toList();
-    otherNumbers.removeAt(0);
-    String lastNumbers = '';
-    otherNumbers.forEach((element) {
-      lastNumbers += element.toString();
-    });
-    return '$firstNumber*** **** **** $lastNumbers';
-  }
 }
 
 @HiveType(typeId: HiveIdentifire.currencyUnitId)
@@ -89,27 +39,19 @@ enum CurrencyUnit {
   @HiveField(0)
   turkishLira('TL'),
   @HiveField(1)
-  azerbaijanManat('AZN'),
-  @HiveField(2)
   americanDollar('USD'),
-  @HiveField(3)
+  @HiveField(2)
   euro('EURO'),
-  @HiveField(4)
+  @HiveField(3)
   russianRuble('RUB'),
-  @HiveField(5)
-  isrealSeqel('ILS'),
-  @HiveField(6)
-  polandZloty('PLN'),
-  @HiveField(7)
+  @HiveField(4)
   englishSterlin('GBP'),
-  @HiveField(8)
+  @HiveField(5)
   canadanDollar('CAD'),
-  @HiveField(9)
-  denmarkKron('DKK'),
-  @HiveField(10)
-  swedenKron('SEK'),
-  @HiveField(11)
-  norwayKron('NOK');
+  @HiveField(6)
+  japaneseYen('JPY'),
+  @HiveField(7)
+  chineseYuan('YUAN');
 
   final String name;
 
@@ -123,7 +65,7 @@ class Expense extends HiveObject {
   @HiveField(1)
   DateTime createdTime = DateTime.now();
   @HiveField(2)
-  final Icon icon;
+  final IconData icon;
   @HiveField(3)
   final ExpenseProductTypes productType;
   @HiveField(4)
@@ -224,8 +166,10 @@ class Income extends HiveObject {
   final IncomeTypes incomeType;
   @HiveField(4)
   final int amount;
+  @HiveField(5)
+  final IconData icon;
 
-  Income(this.incomeName, this.incomeType, this.amount);
+  Income(this.incomeName, this.incomeType, this.amount, this.icon);
 }
 
 @HiveType(typeId: HiveIdentifire.incomeTypeId)

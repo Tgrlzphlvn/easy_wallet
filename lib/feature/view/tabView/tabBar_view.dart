@@ -1,6 +1,7 @@
-
+import 'package:easy_wallet_v2/core/base/base_singleton.dart';
 import 'package:easy_wallet_v2/feature/view/pages/home_view.dart';
 import 'package:easy_wallet_v2/feature/view/pages/settings_view.dart';
+import 'package:easy_wallet_v2/product/extensions/ui_settings_extensions.dart';
 import 'package:flutter/material.dart';
 
 class TabView extends StatefulWidget {
@@ -10,7 +11,7 @@ class TabView extends StatefulWidget {
   State<TabView> createState() => _TabViewState();
 }
 
-class _TabViewState extends State<TabView> {
+class _TabViewState extends State<TabView> with BaseSingleton {
   int currentIndex = 0;
 
   final pageList = [const HomeView(), const SettingsView()];
@@ -24,16 +25,26 @@ class _TabViewState extends State<TabView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
+      floatingActionButton: Visibility(
+        visible: currentIndex == 0 ? true : false,
+        child: FloatingActionButton(
+          shape: RoundedRectangleBorder(borderRadius: context.borderRadiusHigh),
+          child: const Icon(Icons.add),
+          onPressed: () {},
+        ),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
-        items: const [
+        items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.wallet),
-            label: 'Home',
+            icon: const Icon(Icons.wallet),
+            label: localizationHelper.wallet,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.settings_outlined),
-            label: 'Settings',
+            icon: const Icon(Icons.settings_outlined),
+            label: localizationHelper.settings,
           ),
         ],
         onTap: (index) {

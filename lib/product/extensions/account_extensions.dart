@@ -60,7 +60,7 @@ extension AccountExtension on Account {
     return expenses ?? [];
   }
 
-  IconData currencyUnitSelector(CurrencyUnit currencyUnit) {
+  IconData currencyUnitIconSelector(CurrencyUnit currencyUnit) {
     switch (currencyUnit) {
       case CurrencyUnit.turkishLira:
         return Icons.currency_lira_sharp;

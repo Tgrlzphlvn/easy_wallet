@@ -12,7 +12,7 @@ class HomeView extends StatelessWidget with BaseSingleton {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Easy Wallet'),
+        title: Text(localizationHelper.wallet),
       ),
       body: Column(
         children: [
@@ -23,6 +23,7 @@ class HomeView extends StatelessWidget with BaseSingleton {
                   Provider.of<HomeViewModel>(context, listen: true).accounts.length,
               itemBuilder: (context, index) {
                 return AccountCard(
+                    accountListLenght: 0,
                     account: Provider.of<HomeViewModel>(context, listen: false)
                         .accounts[index]);
               },
@@ -30,8 +31,11 @@ class HomeView extends StatelessWidget with BaseSingleton {
           ),
           Expanded(
             child: ListView.builder(
-              itemCount: Provider.of<HomeViewModel>(context, listen: true).accounts.length,
-              itemBuilder: (context, index) {return SizedBox();},
+              itemCount:
+                  Provider.of<HomeViewModel>(context, listen: true).accounts.length,
+              itemBuilder: (context, index) {
+                return SizedBox();
+              },
             ),
           ),
         ],

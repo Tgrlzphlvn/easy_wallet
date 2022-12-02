@@ -10,13 +10,18 @@ class WalletLightTheme with BaseSingleton {
 
   WalletLightTheme._init();
 
+
   ThemeData get themeData => ThemeData(
         textTheme: walletTextTheme.textTheme,
         appBarTheme: AppBarTheme(
-            backgroundColor: walletColors.paleSilver,
-            titleTextStyle: walletTextTheme.textTheme.headline3,
-            shadowColor: walletColors.eerieBlack,
-            centerTitle: false),
+          backgroundColor: walletColors.paleSilver,
+          titleTextStyle: walletTextTheme.textTheme.headline3,
+          shadowColor: walletColors.eerieBlack,
+          centerTitle: false,
+        ),
+        floatingActionButtonTheme: FloatingActionButtonThemeData(
+          backgroundColor: walletColors.eerieBlack,
+        ),
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
           backgroundColor: walletColors.paleSilver,
           unselectedLabelStyle: walletTextTheme.textTheme.subtitle2,

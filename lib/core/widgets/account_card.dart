@@ -29,8 +29,8 @@ class AccountCard extends StatelessWidget with BaseSingleton {
           boxShadow: [BoxShadow(color: walletColors.black, blurRadius: 8)],
           gradient: LinearGradient(
             colors: [
-              walletColors.morningBlue,
-              walletColors.paleSilver,
+              walletColors.eerieBlack,
+              walletColors.blackOlive,
             ],
             tileMode: TileMode.mirror,
             begin: Alignment.bottomLeft,

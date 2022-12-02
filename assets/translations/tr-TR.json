@@ -2,5 +2,7 @@
     "easy_wallet": "Easy Wallet",
     "wallet": "Cüzdan",
     "settings": "Ayarlar",
-    "current_balance": "Mevcut Bakiye"
+    "current_balance": "Mevcut Bakiye",
+    "expenses": "Giderler",
+    "incomes": "Gelirler"
 }

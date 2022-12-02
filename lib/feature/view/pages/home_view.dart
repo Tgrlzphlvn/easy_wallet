@@ -1,6 +1,7 @@
 import 'package:easy_wallet_v2/core/base/base_singleton.dart';
 import 'package:easy_wallet_v2/core/localization/localization_helper.dart';
 import 'package:easy_wallet_v2/core/widgets/account_card.dart';
+import 'package:easy_wallet_v2/core/widgets/wallet_outline_button.dart';
 import 'package:easy_wallet_v2/feature/model/mock/account_mock.dart';
 import 'package:easy_wallet_v2/feature/viewmodel/home_view_model.dart';
 import 'package:flutter/material.dart';
@@ -33,14 +34,32 @@ class HomeView extends StatelessWidget with BaseSingleton {
               },
             ),
           ),
-          Expanded(
-            child: ListView.builder(
-              itemCount:
-                  Provider.of<HomeViewModel>(context, listen: true).accounts.length,
-              itemBuilder: (context, index) {
-                return const SizedBox();
-              },
-            ),
+          SizedBox(
+            height: context.heightGenerator(0.08),
+            child: _incomeExpenseButtonsRow(context),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Padding _incomeExpenseButtonsRow(BuildContext context) {
+    return Padding(
+      padding: context.paddingHorizontalHigh,
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              WalletOutlineButton(
+                onPressed: () {},
+                title: LocalizationHelper.incomes,
+              ),
+              WalletOutlineButton(
+                onPressed: () {},
+                title: LocalizationHelper.expenses,
+              ),
+            ],
           ),
         ],
       ),

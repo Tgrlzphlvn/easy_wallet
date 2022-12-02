@@ -10,7 +10,6 @@ class WalletLightTheme with BaseSingleton {
 
   WalletLightTheme._init();
 
-
   ThemeData get themeData => ThemeData(
         textTheme: walletTextTheme.textTheme,
         appBarTheme: AppBarTheme(
@@ -30,6 +29,16 @@ class WalletLightTheme with BaseSingleton {
             color: walletColors.eerieBlack,
           ),
           selectedItemColor: walletColors.eerieBlack,
+        ),
+        outlinedButtonTheme: OutlinedButtonThemeData(
+          style: OutlinedButton.styleFrom(
+            shadowColor: walletColors.eerieBlack,
+            shape: const StadiumBorder(),
+            side: BorderSide(
+              color: walletColors.eerieBlack,
+            ),
+            foregroundColor: walletColors.eerieBlack,
+          ),
         ),
       );
 }

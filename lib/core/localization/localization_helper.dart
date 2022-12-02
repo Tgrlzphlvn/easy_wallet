@@ -16,4 +16,6 @@ class LocalizationHelper {
   static final String currentBalance = 'current_balance'.tr();
   static final String wallet = 'wallet'.tr();
   static final String settings = 'settings'.tr();
+  static final String expenses = 'expenses'.tr();
+  static final String incomes = 'incomes'.tr();
 }

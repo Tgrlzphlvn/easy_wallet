@@ -1,4 +1,5 @@
 import 'package:easy_wallet_v2/core/base/base_singleton.dart';
+import 'package:easy_wallet_v2/core/localization/localization_helper.dart';
 import 'package:easy_wallet_v2/feature/model/account.dart';
 import 'package:easy_wallet_v2/product/extensions/account_extensions.dart';
 import 'package:easy_wallet_v2/product/utils/amount_validator.dart';
@@ -64,13 +65,12 @@ class AccountCard extends StatelessWidget with BaseSingleton {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        accountListLenght == 1
+        accountListLenght == 0
             ? IconButton(
                 onPressed: onPressed,
                 icon: Icon(
-                  Icons.add,
+                  Icons.add_card_rounded,
                   color: walletColors.white,
-                  size: 30,
                 ),
               )
             : const SizedBox.shrink(),
@@ -90,7 +90,7 @@ class AccountCard extends StatelessWidget with BaseSingleton {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Text(
-          'Current Balance',
+          LocalizationHelper.currentBalance,
           style: context.textTheme.subtitle2,
         ),
       ],

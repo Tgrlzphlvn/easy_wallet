@@ -1,4 +1,5 @@
 import 'package:easy_wallet_v2/core/base/base_singleton.dart';
+import 'package:easy_wallet_v2/core/localization/localization_helper.dart';
 import 'package:flutter/material.dart';
 
 class SettingsView extends StatelessWidget with BaseSingleton {
@@ -8,7 +9,7 @@ class SettingsView extends StatelessWidget with BaseSingleton {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(localizationHelper.settings),
+        title: Text(LocalizationHelper.settings),
       ),
     );
   }

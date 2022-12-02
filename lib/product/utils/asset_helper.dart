@@ -12,6 +12,4 @@ class AssetHelper {
   String getPaymetSystemLogoPNG(AssetHelperEnum asset) {
     return 'assets/logo/${asset.name}.png';
   }
-
-  String localizationPath = 'assets/translations';
 }

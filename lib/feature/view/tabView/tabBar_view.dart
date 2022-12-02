@@ -1,4 +1,5 @@
 import 'package:easy_wallet_v2/core/base/base_singleton.dart';
+import 'package:easy_wallet_v2/core/localization/localization_helper.dart';
 import 'package:easy_wallet_v2/feature/view/pages/home_view.dart';
 import 'package:easy_wallet_v2/feature/view/pages/settings_view.dart';
 import 'package:easy_wallet_v2/product/extensions/ui_settings_extensions.dart';
@@ -40,11 +41,11 @@ class _TabViewState extends State<TabView> with BaseSingleton {
         items: [
           BottomNavigationBarItem(
             icon: const Icon(Icons.wallet),
-            label: localizationHelper.wallet,
+            label: LocalizationHelper.wallet,
           ),
           BottomNavigationBarItem(
             icon: const Icon(Icons.settings_outlined),
-            label: localizationHelper.settings,
+            label: LocalizationHelper.settings,
           ),
         ],
         onTap: (index) {

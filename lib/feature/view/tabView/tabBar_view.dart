@@ -1,7 +1,7 @@
 import 'package:easy_wallet_v2/core/base/base_singleton.dart';
 import 'package:easy_wallet_v2/core/localization/localization_helper.dart';
-import 'package:easy_wallet_v2/feature/view/pages/home_view.dart';
-import 'package:easy_wallet_v2/feature/view/pages/settings_view.dart';
+import 'package:easy_wallet_v2/feature/view/home/home_view.dart';
+import 'package:easy_wallet_v2/feature/view/home/settings_view.dart';
 import 'package:easy_wallet_v2/product/extensions/ui_settings_extensions.dart';
 import 'package:flutter/material.dart';
 

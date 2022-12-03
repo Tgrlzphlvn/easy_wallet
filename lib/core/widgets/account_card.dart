@@ -10,12 +10,12 @@ class AccountCard extends StatelessWidget with BaseSingleton {
   const AccountCard(
       {Key? key,
       required this.account,
-      this.onPressed,
+      required this.onPressed,
       required this.accountListLenght})
       : super(key: key);
 
   final Account account;
-  final void Function()? onPressed;
+  final void Function() onPressed;
   final int accountListLenght;
 
   @override

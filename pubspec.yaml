@@ -27,6 +27,7 @@ dependencies:
   syncfusion_flutter_charts: ^20.3.52
   cupertino_icons: ^1.0.2
   animate_do: ^3.0.2
+  shimmer: ^2.0.0
   google_fonts: ^3.0.1
 
 dev_dependencies:
@@ -43,6 +44,7 @@ flutter:
 
   assets:
     - assets/logo/
+    - assets/lotties/
     - assets/translations/
 
 

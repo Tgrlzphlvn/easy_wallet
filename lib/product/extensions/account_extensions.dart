@@ -6,7 +6,7 @@ extension AccountExtension on Account {
   int subIncomes() {
     int total = 0;
     if (income != null) {
-      for (var i in income!) {
+      for (var i in income) {
         total += i.amount;
       }
       return total;
@@ -17,7 +17,7 @@ extension AccountExtension on Account {
   int subExpenses() {
     int total = 0;
     if (expenses != null) {
-      for (var i in expenses!) {
+      for (var i in expenses) {
         total += i.amount;
       }
       return total;
@@ -50,14 +50,6 @@ extension AccountExtension on Account {
       lastNumbers += element.toString();
     });
     return '$firstNumber*** **** **** $lastNumbers';
-  }
-
-  List<Income> getIncomes() {
-    return income ?? [];
-  }
-
-  List<Expense> getExpenses() {
-    return expenses ?? [];
   }
 
   IconData currencyUnitIconSelector(CurrencyUnit currencyUnit) {

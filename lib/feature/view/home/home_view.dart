@@ -3,6 +3,7 @@ import 'package:easy_wallet_v2/core/localization/localization_helper.dart';
 import 'package:easy_wallet_v2/core/widgets/account_card.dart';
 import 'package:easy_wallet_v2/core/widgets/wallet_outline_button.dart';
 import 'package:easy_wallet_v2/feature/model/mock/account_mock.dart';
+import 'package:easy_wallet_v2/feature/view/pages/add_account_page.dart';
 import 'package:easy_wallet_v2/feature/viewmodel/home_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_wallet_v2/product/extensions/ui_settings_extensions.dart';
@@ -30,6 +31,11 @@ class HomeView extends StatelessWidget with BaseSingleton {
                   accountListLenght:
                       Provider.of<HomeViewModel>(context).accounts.length,
                   account: AccountMock.mockAccount[index],
+                  onPressed: () => Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const AddAccountPage(),
+                    ),
+                  ),
                 );
               },
             ),
@@ -38,9 +44,31 @@ class HomeView extends StatelessWidget with BaseSingleton {
             height: context.heightGenerator(0.08),
             child: _incomeExpenseButtonsRow(context),
           ),
+          Expanded(
+            child: _loadingController(
+              context,
+              widgetStateControllers.emptyListController(
+                context.heightGenerator(0.25),
+                Provider.of<HomeViewModel>(context).incomes.length,
+                ListView.builder(
+                  itemBuilder: (context, index) {
+                    return const SizedBox();
+                  },
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
+  }
+
+  Widget _loadingController(BuildContext context, Widget widget) {
+    return Provider.of<HomeViewModel>(context).isLoading
+        ? const Center(
+            child: CircularProgressIndicator(),
+          )
+        : widget;
   }
 
   Padding _incomeExpenseButtonsRow(BuildContext context) {

@@ -11,34 +11,39 @@ class WalletLightTheme with BaseSingleton {
   WalletLightTheme._init();
 
   ThemeData get themeData => ThemeData(
-        textTheme: walletTextTheme.textTheme,
-        appBarTheme: AppBarTheme(
-          backgroundColor: walletColors.paleSilver,
-          titleTextStyle: walletTextTheme.textTheme.headline3,
+      textTheme: walletTextTheme.textTheme,
+      appBarTheme: AppBarTheme(
+        backgroundColor: walletColors.paleSilver,
+        titleTextStyle: walletTextTheme.textTheme.headline3,
+        shadowColor: walletColors.eerieBlack,
+        centerTitle: false,
+        iconTheme: IconThemeData(
+          color: walletColors.eerieBlack,
+        ),
+      ),
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+        backgroundColor: walletColors.eerieBlack,
+      ),
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        backgroundColor: walletColors.paleSilver,
+        unselectedLabelStyle: walletTextTheme.textTheme.subtitle2,
+        selectedLabelStyle: walletTextTheme.textTheme.subtitle2,
+        selectedIconTheme: IconThemeData(
+          color: walletColors.eerieBlack,
+        ),
+        selectedItemColor: walletColors.eerieBlack,
+      ),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: OutlinedButton.styleFrom(
           shadowColor: walletColors.eerieBlack,
-          centerTitle: false,
-        ),
-        floatingActionButtonTheme: FloatingActionButtonThemeData(
-          backgroundColor: walletColors.eerieBlack,
-        ),
-        bottomNavigationBarTheme: BottomNavigationBarThemeData(
-          backgroundColor: walletColors.paleSilver,
-          unselectedLabelStyle: walletTextTheme.textTheme.subtitle2,
-          selectedLabelStyle: walletTextTheme.textTheme.subtitle2,
-          selectedIconTheme: IconThemeData(
+          shape: const StadiumBorder(),
+          side: BorderSide(
             color: walletColors.eerieBlack,
           ),
-          selectedItemColor: walletColors.eerieBlack,
+          foregroundColor: walletColors.eerieBlack,
         ),
-        outlinedButtonTheme: OutlinedButtonThemeData(
-          style: OutlinedButton.styleFrom(
-            shadowColor: walletColors.eerieBlack,
-            shape: const StadiumBorder(),
-            side: BorderSide(
-              color: walletColors.eerieBlack,
-            ),
-            foregroundColor: walletColors.eerieBlack,
-          ),
-        ),
-      );
+      ),
+      progressIndicatorTheme: ProgressIndicatorThemeData(
+        color: walletColors.eerieBlack,
+      ));
 }

@@ -15,7 +15,7 @@ class ProviderController {
 
   final List<SingleChildWidget> _providers = [
     ChangeNotifierProvider<HomeViewModel>(
-      create: (context) => HomeViewModel()..getAccounts(),
+      create: (context) => HomeViewModel(),
     ),
   ];
 }

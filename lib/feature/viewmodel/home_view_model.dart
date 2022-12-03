@@ -8,11 +8,19 @@ class HomeViewModel extends ChangeNotifier with BaseSingleton {
   final AccountCache _accountCache = AccountCache(HiveKeys.accountKey);
 
   List<Account> accounts = [];
+  List<Income> incomes = [];
+  List<Expense> expenses = [];
 
-  bool isLoading = true;
+  bool isLoading = false;
+  bool isIncomeList = true;
 
   void changeLoading() {
     isLoading = !isLoading;
+    notifyListeners();
+  }
+
+  void changeListType() {
+    isIncomeList = !isIncomeList;
     notifyListeners();
   }
 
@@ -20,6 +28,24 @@ class HomeViewModel extends ChangeNotifier with BaseSingleton {
     changeLoading();
     await _accountCache.init();
     accounts = _accountCache.getObjects() ?? [];
+    changeLoading();
+    notifyListeners();
+  }
+
+  Future<void> getIncomes() async {
+    changeLoading();
+    await _accountCache.init();
+    await getAccounts();
+    incomes = accounts[0].income;
+    changeLoading();
+    notifyListeners();
+  }
+
+  Future<void> getExpenses() async {
+    changeLoading();
+    await _accountCache.init();
+    await getAccounts();
+    expenses = accounts[0].expenses;
     changeLoading();
     notifyListeners();
   }

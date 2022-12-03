@@ -20,17 +20,17 @@ class Account extends HiveObject {
   @HiveField(5)
   final CurrencyUnit currencyUnit;
   @HiveField(6)
-  final List<Expense>? expenses;
+  final List<Expense> expenses;
   @HiveField(7)
-  final List<Income>? income;
+  final List<Income> income;
 
   Account({
     required this.accountName,
     required this.accounHolderName,
     required this.accountNumber,
     required this.currencyUnit,
-    this.expenses,
-    this.income,
+    required this.expenses,
+    required this.income,
   });
 }
 

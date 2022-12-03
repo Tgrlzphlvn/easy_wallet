@@ -21,8 +21,8 @@ class AccountAdapter extends TypeAdapter<Account> {
       accounHolderName: fields[3] as String,
       accountNumber: fields[4] as int?,
       currencyUnit: fields[5] as CurrencyUnit,
-      expenses: (fields[6] as List?)?.cast<Expense>(),
-      income: (fields[7] as List?)?.cast<Income>(),
+      expenses: (fields[6] as List).cast<Expense>(),
+      income: (fields[7] as List).cast<Income>(),
     )
       ..id = fields[0] as String
       ..createdTime = fields[1] as DateTime;

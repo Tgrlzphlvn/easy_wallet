@@ -33,7 +33,7 @@ class HomeView extends StatelessWidget with BaseSingleton {
                   account: AccountMock.mockAccount[index],
                   onPressed: () => Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => const AddAccountPage(),
+                      builder: (context) => AddAccountPage(),
                     ),
                   ),
                 );

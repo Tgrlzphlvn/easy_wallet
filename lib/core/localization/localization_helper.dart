@@ -18,4 +18,10 @@ class LocalizationHelper {
   static final String settings = 'settings'.tr();
   static final String expenses = 'expenses'.tr();
   static final String incomes = 'incomes'.tr();
+  static final String addAccount = 'add_account'.tr();
+  static final String accountName = 'account_name'.tr();
+  static final String accountHolderName = 'account_holder_name'.tr();
+  static final String accountNumber = 'account_number'.tr();
+  static final String saveAccount = 'save_account'.tr();
+  static final String chooseCurrency = 'choose_currency'.tr();
 }

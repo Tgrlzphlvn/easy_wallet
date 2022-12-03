@@ -41,6 +41,14 @@ extension AccountExtension on Account {
     }
   }
 
+  String getDayMonthYear() {
+    return '${createdTime.day}.${createdTime.month}.${createdTime.year}';
+  }
+
+  String getMonthYear() {
+    return '${createdTime.month}.${createdTime.year}';
+  }
+
   String accountNumberValidatator() {
     String firstNumber = accountNumber.toString().characters.first;
     List<String> otherNumbers = accountNumber.toString().characters.toList();

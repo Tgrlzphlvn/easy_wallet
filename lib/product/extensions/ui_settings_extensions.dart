@@ -88,3 +88,7 @@ extension BorderRadiusExtension on BuildContext {
   BorderRadius get borderRadiusHigh => BorderRadius.all(radiusHigh);
   BorderRadius get borderRadiusVeryHigh => BorderRadius.all(radiusVeryHigh);
 }
+
+extension ThemeDataBorderRadiusExtension on ThemeData {
+  BorderRadius get borderRadiusNormal => const BorderRadius.all(Radius.circular(20));
+}

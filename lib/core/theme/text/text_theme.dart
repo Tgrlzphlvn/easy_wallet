@@ -13,10 +13,10 @@ class WalletLightTextTheme with BaseSingleton {
 
   TextTheme get textTheme => TextTheme(
         headline3: GoogleFonts.rubik(
-          fontSize: 30,
+          fontSize: 26,
           fontWeight: FontWeight.bold,
           color: walletColors.eerieBlack,
-          wordSpacing: 2,
+          wordSpacing: 1,
         ),
         headline4: GoogleFonts.rubik(
           fontSize: 24,
@@ -55,7 +55,7 @@ class WalletLightTextTheme with BaseSingleton {
           wordSpacing: 2,
         ),
         bodyText1: GoogleFonts.rubik(
-          fontSize: 8,
+          fontSize: 14,
           fontWeight: FontWeight.bold,
           color: walletColors.eerieBlack,
           wordSpacing: 2,

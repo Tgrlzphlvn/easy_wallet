@@ -29,7 +29,7 @@ class AmountValidator {
     helper1 = value.substring(z, i);
     if (n != null || k != null) helper2 = value.substring(n!, k!);
     helper3 =
-        n != null || k != null ? '$helper.$helper1.$helper2' : '$helper.$helper1';
+        n != null || k != null ? '$helper,$helper1,$helper2' : '$helper,$helper1';
 
     return helper3;
   }

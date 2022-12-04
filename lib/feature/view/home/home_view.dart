@@ -25,8 +25,8 @@ class HomeView extends StatelessWidget with BaseSingleton {
             child: ListView.builder(
               itemCount: Provider.of<HomeViewModel>(context).accounts.length,
               itemBuilder: (context, index) {
-                Account _account = Provider.of<HomeViewModel>(context)
-                    .accounts[index];
+                Account _account =
+                    Provider.of<HomeViewModel>(context).accounts[index];
                 return AccountCard(
                   account: _account,
                   onPressed: () => Navigator.of(context).push(
@@ -78,9 +78,7 @@ class HomeView extends StatelessWidget with BaseSingleton {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               WalletOutlineButton(
-                onPressed: () {
-                  Provider.of<HomeViewModel>(context, listen: false).clearAll();
-                },
+                onPressed: () {},
                 title: LocalizationHelper.incomes,
               ),
               WalletOutlineButton(

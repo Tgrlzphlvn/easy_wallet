@@ -14,11 +14,11 @@ import 'package:provider/provider.dart';
 class AddAccountPage extends StatelessWidget with BaseSingleton {
   AddAccountPage({Key? key}) : super(key: key);
 
-  GlobalKey _key = GlobalKey();
+  final GlobalKey _key = GlobalKey();
 
-  TextEditingController _accountNameController = TextEditingController();
-  TextEditingController _accountHolderNameController = TextEditingController();
-  TextEditingController _accountNumberController = TextEditingController();
+  final TextEditingController _accountNameController = TextEditingController();
+  final TextEditingController _accountHolderNameController = TextEditingController();
+  final TextEditingController _accountNumberController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -72,10 +72,7 @@ class AddAccountPage extends StatelessWidget with BaseSingleton {
                             .chosenCurrecyUnit,
                       ),
                     );
-                    print(_accountHolderNameController.text);
-                    print(_accountNumberController.text);
-                    print(_accountNameController.text);
-                    Future.delayed(Duration(seconds: 1));
+                    await Future.delayed(const Duration(seconds: 1));
                     Navigator.pop(context);
                   },
                 ),

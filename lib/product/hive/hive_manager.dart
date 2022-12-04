@@ -17,6 +17,10 @@ abstract class HiveManager<T> {
 
   void registerAdapters();
 
+  Future<void> clearAll() async {
+    await box?.clear();
+  }
+
   Future<void> addObject(T object);
   Future<void> deleteObject(T object);
   List<T>? getObjects();

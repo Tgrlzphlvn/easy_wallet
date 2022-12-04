@@ -19,7 +19,7 @@ class AccountAdapter extends TypeAdapter<Account> {
     return Account(
       accountName: fields[2] as String,
       accounHolderName: fields[3] as String,
-      accountNumber: fields[4] as int?,
+      accountNumber: fields[4] as String,
       currencyUnit: fields[5] as CurrencyUnit,
       expenses: (fields[6] as List).cast<Expense>(),
       income: (fields[7] as List).cast<Income>(),

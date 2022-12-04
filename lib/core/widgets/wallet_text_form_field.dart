@@ -1,4 +1,5 @@
 import 'package:easy_wallet_v2/core/base/base_singleton.dart';
+import 'package:easy_wallet_v2/product/utils/wallet_validators.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -30,11 +31,17 @@ class WalletTextFormField extends StatelessWidget with BaseSingleton {
         prefixIcon: Icon(icon),
       ),
       style: walletTextTheme.textTheme.bodyText1,
+      controller: controller,
       keyboardType: keyboardType,
       textAlign: TextAlign.start,
       textInputAction: action,
       inputFormatters: inputFormatters,
+      validator: (value) {
+        WalletValidators.instance.nullCheck(value);
+        WalletValidators.instance.mockNameController(value);
+      },
       onChanged: (value) {
+        print(value);
         if (value.length == nextFocusValue) {
           FocusScope.of(context).nextFocus();
         } else if (value.isEmpty) {

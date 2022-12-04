@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class LocalizationHelper {
-
   static const String localizationPath = 'assets/translations';
 
   static List<Locale> supportedLocales = const [
@@ -24,4 +23,7 @@ class LocalizationHelper {
   static final String accountNumber = 'account_number'.tr();
   static final String saveAccount = 'save_account'.tr();
   static final String chooseCurrency = 'choose_currency'.tr();
+
+  //* Validation Strings
+  static final String cannotEmpty = 'cannot_empty'.tr();
 }

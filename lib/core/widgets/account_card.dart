@@ -7,16 +7,14 @@ import 'package:flutter/material.dart';
 import 'package:easy_wallet_v2/product/extensions/ui_settings_extensions.dart';
 
 class AccountCard extends StatelessWidget with BaseSingleton {
-  const AccountCard(
-      {Key? key,
-      required this.account,
-      required this.onPressed,
-      required this.accountListLenght})
-      : super(key: key);
+  const AccountCard({
+    Key? key,
+    required this.account,
+    required this.onPressed,
+  }) : super(key: key);
 
   final Account account;
   final void Function() onPressed;
-  final int accountListLenght;
 
   @override
   Widget build(BuildContext context) {
@@ -65,15 +63,7 @@ class AccountCard extends StatelessWidget with BaseSingleton {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        accountListLenght == 0
-            ? IconButton(
-                onPressed: onPressed,
-                icon: Icon(
-                  Icons.add_card_rounded,
-                  color: walletColors.white,
-                ),
-              )
-            : const SizedBox.shrink(),
+        _addNewAccountStateControl(),
         SizedBox(
           width: context.widthGenerator(0.25),
           height: context.heightGenerator(0.06),
@@ -83,6 +73,21 @@ class AccountCard extends StatelessWidget with BaseSingleton {
         ),
       ],
     );
+  }
+
+  Widget _addNewAccountStateControl() {
+    return account.accountName == walletStrings.nameValidatorString
+        ? IconButton(
+            onPressed: onPressed,
+            icon: Icon(
+              Icons.add_card_rounded,
+              color: walletColors.white,
+            ),
+          )
+        : Text(
+            account.accountName,
+            style: walletTextTheme.textTheme.subtitle1,
+          );
   }
 
   Row _currentBalanceText(BuildContext context) {

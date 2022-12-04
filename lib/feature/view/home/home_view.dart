@@ -2,7 +2,7 @@ import 'package:easy_wallet_v2/core/base/base_singleton.dart';
 import 'package:easy_wallet_v2/core/localization/localization_helper.dart';
 import 'package:easy_wallet_v2/core/widgets/account_card.dart';
 import 'package:easy_wallet_v2/core/widgets/wallet_outline_button.dart';
-import 'package:easy_wallet_v2/feature/model/mock/account_mock.dart';
+import 'package:easy_wallet_v2/feature/model/account.dart';
 import 'package:easy_wallet_v2/feature/view/pages/add_account_page.dart';
 import 'package:easy_wallet_v2/feature/viewmodel/home_view_model.dart';
 import 'package:flutter/material.dart';
@@ -23,14 +23,12 @@ class HomeView extends StatelessWidget with BaseSingleton {
           SizedBox(
             height: context.heightGenerator(0.3),
             child: ListView.builder(
-              itemCount: Provider.of<HomeViewModel>(context).accounts.isEmpty
-                  ? 1
-                  : Provider.of<HomeViewModel>(context).accounts.length,
+              itemCount: Provider.of<HomeViewModel>(context).accounts.length,
               itemBuilder: (context, index) {
+                Account _account = Provider.of<HomeViewModel>(context)
+                    .accounts[index];
                 return AccountCard(
-                  accountListLenght:
-                      Provider.of<HomeViewModel>(context).accounts.length,
-                  account: AccountMock.mockAccount[index],
+                  account: _account,
                   onPressed: () => Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) => AddAccountPage(),
@@ -80,7 +78,9 @@ class HomeView extends StatelessWidget with BaseSingleton {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               WalletOutlineButton(
-                onPressed: () {},
+                onPressed: () {
+                  Provider.of<HomeViewModel>(context, listen: false).clearAll();
+                },
                 title: LocalizationHelper.incomes,
               ),
               WalletOutlineButton(

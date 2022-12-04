@@ -20,5 +20,6 @@ class WalletColors {
   Color morningBlue = const Color.fromRGBO(132, 165, 157, 1);
   Color lightCoral = const Color.fromRGBO(242, 132, 130, 1);
   Color oldLevander = const Color.fromRGBO(109, 104, 117, 1);
+  Color pacificBlue = const Color.fromRGBO(0, 180, 216, 1);
 
 }

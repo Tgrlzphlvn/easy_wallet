@@ -62,7 +62,7 @@ class WalletLightTheme with BaseSingleton {
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: ThemeData().borderRadiusNormal,
-            borderSide: BorderSide(color: walletColors.morningBlue),
+            borderSide: BorderSide(color: walletColors.eerieBlack),
           ),
           errorBorder: OutlineInputBorder(
             borderRadius: ThemeData().borderRadiusNormal,

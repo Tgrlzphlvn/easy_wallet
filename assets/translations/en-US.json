@@ -6,9 +6,10 @@
     "expenses": "Expense List",
     "incomes": "Income List",
     "add_account": "Add account",
-    "account_name" : "Account name",
-    "account_holder_name" : "Account holder name",
+    "account_name": "Account name",
+    "account_holder_name": "Account holder name",
     "account_number": "Account number",
     "save_account": "Save account",
-    "choose_currency": "Choose a currency"
+    "choose_currency": "Choose a currency",
+    "cannot_empty": "This field cannot be left blank!"
 }

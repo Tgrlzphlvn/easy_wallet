@@ -4,7 +4,6 @@ import 'package:easy_wallet_v2/product/hive/account/account_cache.dart';
 import 'package:flutter/material.dart';
 
 class AddAccountPageViewModel extends ChangeNotifier {
-
   final AccountCache _accountCache = AccountCache(HiveKeys.accountKey);
 
   CurrencyUnit chosenCurrecyUnit = CurrencyUnit.americanDollar;
@@ -14,7 +13,8 @@ class AddAccountPageViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> addAccount(Account account)async  {
+  Future<void> addAccount(Account account) async {
+    await _accountCache.init();
     await _accountCache.addObject(account);
     notifyListeners();
   }

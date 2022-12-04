@@ -50,8 +50,8 @@ extension AccountExtension on Account {
   }
 
   String accountNumberValidatator() {
-    String firstNumber = accountNumber.toString().characters.first;
-    List<String> otherNumbers = accountNumber.toString().characters.toList();
+    String firstNumber = accountNumber.characters.first;
+    List<String> otherNumbers = accountNumber.characters.toList();
     String lastNumbers = '';
     otherNumbers.removeAt(0);
     otherNumbers.forEach((element) {

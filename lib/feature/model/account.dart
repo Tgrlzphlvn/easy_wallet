@@ -16,7 +16,7 @@ class Account extends HiveObject {
   @HiveField(3)
   final String accounHolderName;
   @HiveField(4)
-  final int? accountNumber;
+  final String accountNumber;
   @HiveField(5)
   final CurrencyUnit currencyUnit;
   @HiveField(6)
@@ -32,6 +32,21 @@ class Account extends HiveObject {
     required this.expenses,
     required this.income,
   });
+
+  factory Account.create(
+      {required String accountName,
+      required String accounHolderName,
+      required String accountNumber,
+      required CurrencyUnit currencyUnit}) {
+    return Account(
+      accountName: accountName,
+      accounHolderName: accounHolderName,
+      accountNumber: accountNumber,
+      currencyUnit: currencyUnit,
+      expenses: [],
+      income: [],
+    );
+  }
 }
 
 @HiveType(typeId: HiveIdentifire.currencyUnitId)

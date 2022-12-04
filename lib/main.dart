@@ -14,7 +14,6 @@ void main() async {
 
   ProviderController providerController = ProviderController.instance;
 
-
   runApp(
     MultiProvider(
       providers: providerController.providers,
@@ -30,7 +29,6 @@ void main() async {
 
 class MyApp extends StatelessWidget with BaseSingleton {
   const MyApp({Key? key}) : super(key: key);
-
 
   @override
   Widget build(BuildContext context) {

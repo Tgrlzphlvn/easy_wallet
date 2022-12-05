@@ -106,8 +106,12 @@ class AccountCard extends StatelessWidget with BaseSingleton {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
+        Icon(
+          account.currencyUnitIconSelector(account.currencyUnit),
+          color: walletColors.white,
+        ),
         Text(
-          '\$${AmountValidator.amountValidator(account.incomeExpenseAvarage().toString())}',
+          AmountValidator.amountValidator(account.incomeExpenseAvarage().toString()),
           style: context.textTheme.headline4,
         ),
       ],

@@ -1,7 +1,12 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:easy_wallet_v2/core/base/base_singleton.dart';
 import 'package:easy_wallet_v2/core/localization/localization_helper.dart';
+import 'package:easy_wallet_v2/core/widgets/income_or_expense_alert_dialog.dart';
+import 'package:easy_wallet_v2/core/widgets/wallet_outline_button.dart';
+import 'package:easy_wallet_v2/feature/model/reporters.dart';
 import 'package:easy_wallet_v2/feature/view/home/home_view.dart';
 import 'package:easy_wallet_v2/feature/view/home/settings_view.dart';
+import 'package:easy_wallet_v2/feature/view/pages/add_income_or_expense_view.dart';
 import 'package:easy_wallet_v2/product/extensions/ui_settings_extensions.dart';
 import 'package:flutter/material.dart';
 
@@ -33,7 +38,16 @@ class _TabViewState extends State<TabView> with BaseSingleton {
         child: FloatingActionButton(
           shape: RoundedRectangleBorder(borderRadius: context.borderRadiusHigh),
           child: const Icon(Icons.add),
-          onPressed: () {},
+          onPressed: () {
+            showDialog(
+              context: context,
+              builder: (context) {
+                return IncomeOrExpenseAlertDialog(
+                  actions: _actionsList(context),
+                );
+              },
+            );
+          },
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -54,5 +68,36 @@ class _TabViewState extends State<TabView> with BaseSingleton {
       ),
       body: pageList[currentIndex],
     );
+  }
+
+  List<Widget> _actionsList(BuildContext context) {
+    return [
+      WalletOutlineButton(
+        title: LocalizationHelper.income,
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => AddIncomeOrExpensePage(
+                incomeOrExpense: IncomeOrExpense(false),
+              ),
+            ),
+          );
+        },
+      ),
+      WalletOutlineButton(
+        title: LocalizationHelper.expense,
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => AddIncomeOrExpensePage(
+                incomeOrExpense: IncomeOrExpense(true),
+              ),
+            ),
+          );
+        },
+      ),
+    ];
   }
 }

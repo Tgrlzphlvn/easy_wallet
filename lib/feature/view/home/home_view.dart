@@ -3,6 +3,7 @@ import 'package:easy_wallet_v2/core/localization/localization_helper.dart';
 import 'package:easy_wallet_v2/core/widgets/account_card.dart';
 import 'package:easy_wallet_v2/core/widgets/wallet_outline_button.dart';
 import 'package:easy_wallet_v2/feature/model/account.dart';
+import 'package:easy_wallet_v2/feature/model/reporters.dart';
 import 'package:easy_wallet_v2/feature/view/pages/add_account_page.dart';
 import 'package:easy_wallet_v2/feature/viewmodel/home_view_model.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +11,9 @@ import 'package:easy_wallet_v2/product/extensions/ui_settings_extensions.dart';
 import 'package:provider/provider.dart';
 
 class HomeView extends StatelessWidget with BaseSingleton {
-  const HomeView({Key? key}) : super(key: key);
+  const HomeView({Key? key, this.saveSuccessful}) : super(key: key);
+
+  final SaveSuccessful? saveSuccessful;
 
   @override
   Widget build(BuildContext context) {

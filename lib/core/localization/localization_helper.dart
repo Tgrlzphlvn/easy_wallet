@@ -26,4 +26,15 @@ class LocalizationHelper {
 
   //* Validation Strings
   static final String cannotEmpty = 'cannot_empty'.tr();
+
+  //* Add Income or Expense View Strings
+  static final String name = 'Name'.tr();
+  static final String amount = 'Amount'.tr();
+  static final String chooseType = 'Choose a type'.tr();
+
+  //* Add Income or Expense Alert Strings
+  static final String pleaseSelectTheDataType =
+      'Please select the data type you want to add.'.tr();
+  static final String income = 'Income'.tr();
+  static final String expense = 'Expense'.tr();
 }

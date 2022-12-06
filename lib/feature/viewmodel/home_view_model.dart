@@ -29,6 +29,7 @@ class HomeViewModel extends ChangeNotifier with BaseSingleton {
     changeLoading();
     await _accountCache.init();
     accounts = _accountCache.getObjects() ?? [];
+    print(accounts.length);
     if (accounts.isEmpty) accounts = AccountMock.mockAccount;
     changeLoading();
     notifyListeners();
@@ -54,5 +55,9 @@ class HomeViewModel extends ChangeNotifier with BaseSingleton {
 
   Future<void> clearAll() async {
     await _accountCache.clearAll();
+  }
+
+  Future<void> delete(Account account) async {
+    await _accountCache.deleteObject(account);
   }
 }

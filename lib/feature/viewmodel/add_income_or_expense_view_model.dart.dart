@@ -23,7 +23,7 @@ class AddIncomeOrExpenseViewModel extends ChangeNotifier {
 
   Future<void> addIncomeOrExpense(Account account) async {
     await _accountCache.init();
-    await _accountCache.addObject(account);
+    await _accountCache.putObject(account);
     notifyListeners();
   }
 }

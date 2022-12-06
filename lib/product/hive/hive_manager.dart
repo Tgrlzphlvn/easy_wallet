@@ -22,6 +22,7 @@ abstract class HiveManager<T> {
   }
 
   Future<void> addObject(T object);
+  Future<void> putObject(T object);
   Future<void> deleteObject(T object);
   List<T>? getObjects();
 }

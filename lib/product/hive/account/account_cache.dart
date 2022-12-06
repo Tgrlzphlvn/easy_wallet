@@ -25,11 +25,16 @@ class AccountCache extends HiveManager<Account> {
 
   @override
   Future<void> deleteObject(Account object) async {
-    await box?.delete(object);
+    await box?.delete(object.id);
   }
 
   @override
   List<Account>? getObjects() {
     return box?.values.toList() as List<Account>;
+  }
+
+  @override
+  Future<void> putObject(Account object) async {
+    await box?.putAt(0, object);
   }
 }

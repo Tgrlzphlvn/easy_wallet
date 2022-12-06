@@ -37,4 +37,6 @@ class LocalizationHelper {
       'Please select the data type you want to add.'.tr();
   static final String income = 'Income'.tr();
   static final String expense = 'Expense'.tr();
+  static final String addIncomeOrExpenseTitle = 'Add a new value'.tr();
+  static final String save = 'Save'.tr();
 }

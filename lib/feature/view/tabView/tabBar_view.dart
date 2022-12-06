@@ -75,7 +75,7 @@ class _TabViewState extends State<TabView> with BaseSingleton {
       WalletOutlineButton(
         title: LocalizationHelper.income,
         onPressed: () {
-          Navigator.push(
+          Navigator.pushReplacement(
             context,
             MaterialPageRoute(
               builder: (context) => AddIncomeOrExpensePage(
@@ -88,7 +88,7 @@ class _TabViewState extends State<TabView> with BaseSingleton {
       WalletOutlineButton(
         title: LocalizationHelper.expense,
         onPressed: () {
-          Navigator.push(
+          Navigator.pushReplacement(
             context,
             MaterialPageRoute(
               builder: (context) => AddIncomeOrExpensePage(

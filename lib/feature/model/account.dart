@@ -80,15 +80,13 @@ class Expense extends HiveObject {
   @HiveField(1)
   DateTime createdTime = DateTime.now();
   @HiveField(2)
-  final IconData icon;
-  @HiveField(3)
   final ExpenseProductTypes productType;
-  @HiveField(4)
+  @HiveField(3)
   final String productName;
-  @HiveField(5)
+  @HiveField(4)
   final int amount;
 
-  Expense(this.icon, this.productType, this.productName, this.amount);
+  Expense(this.productType, this.productName, this.amount);
 }
 
 @HiveType(typeId: HiveIdentifire.expenseProductTypesId)
@@ -181,10 +179,8 @@ class Income extends HiveObject {
   final IncomeTypes incomeType;
   @HiveField(4)
   final int amount;
-  @HiveField(5)
-  final IconData icon;
 
-  Income(this.incomeName, this.incomeType, this.amount, this.icon);
+  Income(this.incomeName, this.incomeType, this.amount);
 }
 
 @HiveType(typeId: HiveIdentifire.incomeTypeId)

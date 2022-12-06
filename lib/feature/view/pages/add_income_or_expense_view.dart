@@ -6,7 +6,9 @@ import 'package:easy_wallet_v2/core/widgets/wallet_text_form_field.dart';
 import 'package:easy_wallet_v2/feature/model/account.dart';
 import 'package:easy_wallet_v2/feature/model/reporters.dart';
 import 'package:easy_wallet_v2/feature/viewmodel/add_income_or_expense_view_model.dart.dart';
+import 'package:easy_wallet_v2/feature/viewmodel/home_view_model.dart';
 import 'package:easy_wallet_v2/product/extensions/ui_settings_extensions.dart';
+import 'package:easy_wallet_v2/product/utils/icon_controllers.dart';
 import 'package:easy_wallet_v2/product/utils/lottie_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -25,78 +27,104 @@ class AddIncomeOrExpensePage extends StatelessWidget with BaseSingleton {
 
   @override
   Widget build(BuildContext context) {
+    Account _account =
+        Provider.of<HomeViewModel>(context, listen: false).accounts[0];
     return Scaffold(
       appBar: AppBar(
         title: Text(LocalizationHelper.addIncomeOrExpenseTitle),
       ),
       body: Form(
         key: _key,
-        child: Column(
-          children: [
-            Padding(
-              padding: context.paddingAllHigh,
-              child: LottieHelper.showLottie(
-                LottieEnum.walletman,
-                lottieHeight: context.heightGenerator(0.18),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: context.paddingAllHigh,
+                child: LottieHelper.showLottie(
+                  LottieEnum.walletman,
+                  lottieHeight: context.heightGenerator(0.18),
+                ),
               ),
-            ),
-            Padding(
-              padding: context.walletCardWidgetsPaddingHigh,
-              child: WalletTextFormField(
-                controller: _nameTextFieldController,
-                keyboardType: TextInputType.name,
-                action: TextInputAction.next,
-                inputFormatters: [LengthLimitingTextInputFormatter(24)],
-                label: LocalizationHelper.name,
-                icon: Icons.text_snippet_outlined,
-                nextFocusValue: 24,
+              Padding(
+                padding: context.walletCardWidgetsPaddingHigh,
+                child: WalletTextFormField(
+                  controller: _nameTextFieldController,
+                  keyboardType: TextInputType.name,
+                  action: TextInputAction.next,
+                  inputFormatters: [LengthLimitingTextInputFormatter(24)],
+                  label: LocalizationHelper.name,
+                  icon: Icons.text_snippet_outlined,
+                  nextFocusValue: 24,
+                ),
               ),
-            ),
-            Padding(
-              padding: context.walletCardWidgetsPaddingHigh,
-              child: WalletTextFormField(
-                controller: _amountTextFieldController,
-                keyboardType: TextInputType.number,
-                action: TextInputAction.done,
-                inputFormatters: [LengthLimitingTextInputFormatter(16)],
-                label: LocalizationHelper.amount,
-                icon: Icons.numbers,
-                nextFocusValue: 16,
+              Padding(
+                padding: context.walletCardWidgetsPaddingHigh,
+                child: WalletTextFormField(
+                  controller: _amountTextFieldController,
+                  keyboardType: TextInputType.number,
+                  action: TextInputAction.done,
+                  inputFormatters: [LengthLimitingTextInputFormatter(16)],
+                  label: LocalizationHelper.amount,
+                  icon: Icons.numbers,
+                  nextFocusValue: 16,
+                ),
               ),
-            ),
-            Padding(
-              padding: context.walletCardWidgetsPaddingHigh,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    LocalizationHelper.chooseType,
-                    style: walletTextTheme.textTheme.bodyText1,
-                  ),
-                  _incomeOrExpenseDropDownButton(context),
-                ],
-              ),
-            ),
-            Padding(
-              padding: context.paddingAllHigh,
-              child: WalletOutlineButton(
-                title: LocalizationHelper.save,
-                onPressed: () {
-                  Provider.of<AddIncomeOrExpenseViewModel>(context)
-                      .addIncomeOrExpense(
-                    Account(
-                      accountName: accountName,
-                      accounHolderName: accounHolderName,
-                      accountNumber: accountNumber,
-                      currencyUnit: currencyUnit,
-                      expenses: expenses,
-                      income: income,
+              Padding(
+                padding: context.walletCardWidgetsPaddingHigh,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      LocalizationHelper.chooseType,
+                      style: walletTextTheme.textTheme.bodyText1,
                     ),
-                  );
-                },
+                    _incomeOrExpenseDropDownButton(context),
+                  ],
+                ),
               ),
-            ),
-          ],
+              Padding(
+                padding: context.paddingAllHigh,
+                child: WalletOutlineButton(
+                  title: LocalizationHelper.save,
+                  onPressed: () {
+                    Provider.of<AddIncomeOrExpenseViewModel>(context, listen: false)
+                        .addIncomeOrExpense(
+                      Account(
+                        accountName: _account.accountName,
+                        accounHolderName: _account.accounHolderName,
+                        accountNumber: _account.accountNumber,
+                        currencyUnit: _account.currencyUnit,
+                        expenses: incomeOrExpense.isIncomeOrExpense == true
+                            ? _account.expenses +
+                                [
+                                  Expense(
+                                      Provider.of<AddIncomeOrExpenseViewModel>(
+                                              context,
+                                              listen: false)
+                                          .chosenExpenseType,
+                                      _nameTextFieldController.text,
+                                      int.parse(_amountTextFieldController.text))
+                                ]
+                            : [],
+                        income: incomeOrExpense.isIncomeOrExpense == false
+                            ? _account.income +
+                                [
+                                  Income(
+                                    _nameTextFieldController.text,
+                                    Provider.of<AddIncomeOrExpenseViewModel>(context,
+                                            listen: false)
+                                        .chosenIncomeType,
+                                    int.parse(_amountTextFieldController.text),
+                                  ),
+                                ]
+                            : [],
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

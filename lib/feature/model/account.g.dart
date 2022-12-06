@@ -72,10 +72,9 @@ class ExpenseAdapter extends TypeAdapter<Expense> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Expense(
-      fields[2] as IconData,
-      fields[3] as ExpenseProductTypes,
-      fields[4] as String,
-      fields[5] as int,
+      fields[2] as ExpenseProductTypes,
+      fields[3] as String,
+      fields[4] as int,
     )
       ..id = fields[0] as String
       ..createdTime = fields[1] as DateTime;
@@ -84,18 +83,16 @@ class ExpenseAdapter extends TypeAdapter<Expense> {
   @override
   void write(BinaryWriter writer, Expense obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
       ..write(obj.createdTime)
       ..writeByte(2)
-      ..write(obj.icon)
-      ..writeByte(3)
       ..write(obj.productType)
-      ..writeByte(4)
+      ..writeByte(3)
       ..write(obj.productName)
-      ..writeByte(5)
+      ..writeByte(4)
       ..write(obj.amount);
   }
 
@@ -124,7 +121,6 @@ class IncomeAdapter extends TypeAdapter<Income> {
       fields[2] as String,
       fields[3] as IncomeTypes,
       fields[4] as int,
-      fields[5] as IconData,
     )
       ..id = fields[0] as String
       ..createdTime = fields[1] as DateTime;
@@ -133,7 +129,7 @@ class IncomeAdapter extends TypeAdapter<Income> {
   @override
   void write(BinaryWriter writer, Income obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -143,9 +139,7 @@ class IncomeAdapter extends TypeAdapter<Income> {
       ..writeByte(3)
       ..write(obj.incomeType)
       ..writeByte(4)
-      ..write(obj.amount)
-      ..writeByte(5)
-      ..write(obj.icon);
+      ..write(obj.amount);
   }
 
   @override

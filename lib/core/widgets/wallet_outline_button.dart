@@ -6,7 +6,7 @@ class WalletOutlineButton extends StatelessWidget {
       {super.key, required this.title, required this.onPressed});
 
   final String title;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {

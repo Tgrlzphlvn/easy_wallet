@@ -5,10 +5,10 @@ import 'package:easy_wallet_v2/core/widgets/wallet_outline_button.dart';
 import 'package:easy_wallet_v2/core/widgets/wallet_text_form_field.dart';
 import 'package:easy_wallet_v2/feature/model/account.dart';
 import 'package:easy_wallet_v2/feature/model/reporters.dart';
+import 'package:easy_wallet_v2/feature/view/home/home_view.dart';
 import 'package:easy_wallet_v2/feature/viewmodel/add_income_or_expense_view_model.dart.dart';
 import 'package:easy_wallet_v2/feature/viewmodel/home_view_model.dart';
 import 'package:easy_wallet_v2/product/extensions/ui_settings_extensions.dart';
-import 'package:easy_wallet_v2/product/utils/icon_controllers.dart';
 import 'package:easy_wallet_v2/product/utils/lottie_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -105,7 +105,7 @@ class AddIncomeOrExpensePage extends StatelessWidget with BaseSingleton {
                                       _nameTextFieldController.text,
                                       int.parse(_amountTextFieldController.text))
                                 ]
-                            : [],
+                            : _account.expenses,
                         income: incomeOrExpense.isIncomeOrExpense == false
                             ? _account.income +
                                 [
@@ -117,9 +117,11 @@ class AddIncomeOrExpensePage extends StatelessWidget with BaseSingleton {
                                     int.parse(_amountTextFieldController.text),
                                   ),
                                 ]
-                            : [],
+                            : _account.income,
                       ),
                     );
+                    Navigator.of(context)
+                        .pop(HomeView(saveSuccessful: SaveSuccessful(true)));
                   },
                 ),
               ),

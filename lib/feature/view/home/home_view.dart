@@ -11,10 +11,35 @@ import 'package:flutter/material.dart';
 import 'package:easy_wallet_v2/product/extensions/ui_settings_extensions.dart';
 import 'package:provider/provider.dart';
 
-class HomeView extends StatelessWidget with BaseSingleton {
+class HomeView extends StatefulWidget {
   const HomeView({Key? key, this.saveSuccessful}) : super(key: key);
 
   final SaveSuccessful? saveSuccessful;
+
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> with BaseSingleton {
+  @override
+  void initState() {
+    super.initState();
+    if (widget.saveSuccessful?.isSaved == true) {
+      Provider.of<HomeViewModel>(context, listen: false).getAccounts();
+      Provider.of<HomeViewModel>(context, listen: false).getIncomes();
+      Provider.of<HomeViewModel>(context, listen: false).getExpenses();
+    }
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (widget.saveSuccessful?.isSaved == true) {
+      Provider.of<HomeViewModel>(context, listen: false).getAccounts();
+      Provider.of<HomeViewModel>(context, listen: false).getIncomes();
+      Provider.of<HomeViewModel>(context, listen: false).getExpenses();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,49 +51,78 @@ class HomeView extends StatelessWidget with BaseSingleton {
         children: [
           SizedBox(
             height: context.heightGenerator(0.3),
-            child: ListView.builder(
-              itemCount: Provider.of<HomeViewModel>(context).accounts.length,
-              itemBuilder: (context, index) {
-                Account _account =
-                    Provider.of<HomeViewModel>(context).accounts[index];
-                return AccountCard(
-                  account: _account,
-                  onPressed: () => Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => AddAccountPage(),
-                    ),
-                  ),
-                );
-              },
-            ),
+            child: _accountCard(context),
           ),
           SizedBox(
             height: context.heightGenerator(0.08),
             child: _incomeExpenseButtonsRow(context),
           ),
+          const Divider(),
           Expanded(
             child: _loadingController(
               context,
               widgetStateControllers.emptyListController(
                 context.heightGenerator(0.25),
                 Provider.of<HomeViewModel>(context).incomes.length,
-                ListView.builder(
-                  itemCount: Provider.of<HomeViewModel>(context).incomes.length,
-                  itemBuilder: (context, index) {
-                    Income _income =
-                        Provider.of<HomeViewModel>(context, listen: false)
-                            .incomes[index];
-                    return Padding(
-                      padding: context.paddingAllLow,
-                      child: WalletListTile(income: _income),
-                    );
-                  },
-                ),
+                Provider.of<HomeViewModel>(context).isIncomeList
+                    ? _incomeListViewBuilder(context)
+                    : _expenseListViewBuilder(context),
               ),
             ),
           ),
         ],
       ),
+    );
+  }
+
+  ListView _accountCard(BuildContext context) {
+    return ListView.builder(
+      itemCount: Provider.of<HomeViewModel>(context).accounts.length,
+      itemBuilder: (context, index) {
+        Account account = Provider.of<HomeViewModel>(context).accounts[index];
+        return AccountCard(
+          account: account,
+          onPressed: () => Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => AddAccountPage(),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  ListView _incomeListViewBuilder(BuildContext context) {
+    return ListView.builder(
+      itemCount: Provider.of<HomeViewModel>(context).incomes.length,
+      itemBuilder: (context, index) {
+        Income income =
+            Provider.of<HomeViewModel>(context, listen: false).incomes[index];
+        return Padding(
+          padding: context.paddingAllLow,
+          child: WalletListTile(
+            income: income,
+            isIncome: true,
+          ),
+        );
+      },
+    );
+  }
+
+  ListView _expenseListViewBuilder(BuildContext context) {
+    return ListView.builder(
+      itemCount: Provider.of<HomeViewModel>(context).expenses.length,
+      itemBuilder: (context, index) {
+        Expense expense =
+            Provider.of<HomeViewModel>(context, listen: false).expenses[index];
+        return Padding(
+          padding: context.paddingAllLow,
+          child: WalletListTile(
+            expense: expense,
+            isIncome: false,
+          ),
+        );
+      },
     );
   }
 
@@ -89,13 +143,29 @@ class HomeView extends StatelessWidget with BaseSingleton {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               WalletOutlineButton(
-                onPressed: () {
-                  Provider.of<HomeViewModel>(context, listen: false).getIncomes();
-                },
+                onPressed: Provider.of<HomeViewModel>(context, listen: false)
+                            .isIncomeList ==
+                        true
+                    ? null
+                    : () {
+                        Provider.of<HomeViewModel>(context, listen: false)
+                            .getIncomes();
+                        Provider.of<HomeViewModel>(context, listen: false)
+                            .changeListType();
+                      },
                 title: LocalizationHelper.incomes,
               ),
               WalletOutlineButton(
-                onPressed: () {},
+                onPressed: Provider.of<HomeViewModel>(context, listen: false)
+                            .isIncomeList ==
+                        false
+                    ? null
+                    : () {
+                        Provider.of<HomeViewModel>(context, listen: false)
+                            .getExpenses();
+                        Provider.of<HomeViewModel>(context, listen: false)
+                            .changeListType();
+                      },
                 title: LocalizationHelper.expenses,
               ),
             ],

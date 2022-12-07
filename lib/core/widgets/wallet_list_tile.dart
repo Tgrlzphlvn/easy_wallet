@@ -4,15 +4,19 @@ import 'package:easy_wallet_v2/feature/viewmodel/home_view_model.dart';
 import 'package:easy_wallet_v2/product/utils/amount_validator.dart';
 import 'package:easy_wallet_v2/product/utils/icon_controllers.dart';
 import 'package:flutter/material.dart';
-import 'package:easy_wallet_v2/product/extensions/income_extensions.dart';
 import 'package:easy_wallet_v2/product/extensions/ui_settings_extensions.dart';
 import 'package:provider/provider.dart';
 import 'package:easy_wallet_v2/product/extensions/account_extensions.dart';
+import 'package:easy_wallet_v2/product/extensions/expense_extensions.dart';
+import 'package:easy_wallet_v2/product/extensions/income_extensions.dart';
 
 class WalletListTile extends StatelessWidget with BaseSingleton {
-  const WalletListTile({Key? key, required this.income}) : super(key: key);
+  const WalletListTile({Key? key, this.income, this.expense, required this.isIncome})
+      : super(key: key);
 
-  final Income income;
+  final Income? income;
+  final Expense? expense;
+  final bool isIncome;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +43,9 @@ class WalletListTile extends StatelessWidget with BaseSingleton {
         borderRadius: context.borderRadiusHigh,
       ),
       child: Icon(
-        IconControllers.incomeIconSelector(income.incomeType),
+        isIncome == true
+            ? IconControllers.incomeIconSelector(income!.incomeType)
+            : IconControllers.expenseIconSelector(expense!.productType),
         shadows: const [Shadow(blurRadius: 2)],
       ),
     );
@@ -47,14 +53,14 @@ class WalletListTile extends StatelessWidget with BaseSingleton {
 
   Text _listTileTitle() {
     return Text(
-      income.incomeName,
+      isIncome == true ? income!.incomeName : expense!.productName,
       style: walletTextTheme.textTheme.headline5,
     );
   }
 
   Text _listTileSubtitle() {
     return Text(
-      income.getDayMonthYear(),
+      isIncome == true ? income!.getDayMonthYear() : expense!.getDayMonthYear(),
       style: walletTextTheme.textTheme.bodyText1,
     );
   }
@@ -78,7 +84,9 @@ class WalletListTile extends StatelessWidget with BaseSingleton {
           ),
           Text(
             AmountValidator.amountValidator(
-              income.amount.toString(),
+              isIncome == true
+                  ? income!.amount.toString()
+                  : expense!.amount.toString(),
             ),
             style: walletTextTheme.textTheme.bodyText1,
           ),

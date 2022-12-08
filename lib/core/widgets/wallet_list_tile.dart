@@ -66,7 +66,7 @@ class WalletListTile extends StatelessWidget with BaseSingleton {
   }
 
   Container _listTileTrailing(BuildContext context) {
-    Account _account = Provider.of<HomeViewModel>(context).accounts[0];
+    Account account = Provider.of<HomeViewModel>(context).accounts[0];
     return Container(
       width: context.widthGenerator(0.3),
       height: context.heightGenerator(0.05),
@@ -78,7 +78,7 @@ class WalletListTile extends StatelessWidget with BaseSingleton {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(
-            _account.currencyUnitIconSelector(_account.currencyUnit),
+            account.currencyUnitIconSelector(account.currencyUnit),
             size: 15,
             shadows: const [Shadow(blurRadius: 2)],
           ),

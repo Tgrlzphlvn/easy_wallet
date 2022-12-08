@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:easy_wallet_v2/core/base/base_singleton.dart';
 import 'package:easy_wallet_v2/core/localization/localization_helper.dart';
 import 'package:easy_wallet_v2/core/widgets/income_or_expense_alert_dialog.dart';

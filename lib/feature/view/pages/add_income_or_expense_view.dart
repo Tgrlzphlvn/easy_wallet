@@ -86,7 +86,7 @@ class AddIncomeOrExpensePage extends StatelessWidget with BaseSingleton {
                 padding: context.paddingAllHigh,
                 child: WalletOutlineButton(
                   title: LocalizationHelper.save,
-                  onPressed: () {
+                  onPressed: () async {
                     Provider.of<AddIncomeOrExpenseViewModel>(context, listen: false)
                         .addIncomeOrExpense(
                       Account(
@@ -120,8 +120,13 @@ class AddIncomeOrExpensePage extends StatelessWidget with BaseSingleton {
                             : _account.income,
                       ),
                     );
-                    Navigator.of(context)
-                        .pop(HomeView(saveSuccessful: SaveSuccessful(true)));
+                    Provider.of<HomeViewModel>(context, listen: false).getAccounts();
+                    Provider.of<HomeViewModel>(context, listen: false).getIncomes();
+                    Provider.of<HomeViewModel>(context, listen: false).getExpenses();
+
+                    await Future.delayed(const Duration(seconds: 1));
+
+                    Navigator.of(context).pop();
                   },
                 ),
               ),

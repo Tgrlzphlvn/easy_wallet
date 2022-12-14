@@ -1,5 +1,6 @@
 import 'package:easy_wallet_v2/feature/viewmodel/add_account_page_view_model.dart';
 import 'package:easy_wallet_v2/feature/viewmodel/add_income_or_expense_view_model.dart.dart';
+import 'package:easy_wallet_v2/feature/viewmodel/add_shopping_list_page_view_model.dart';
 import 'package:easy_wallet_v2/feature/viewmodel/home_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
@@ -27,5 +28,8 @@ class ProviderController {
     ChangeNotifierProvider<AddIncomeOrExpenseViewModel>(
       create: (context) => AddIncomeOrExpenseViewModel(),
     ),
+    ChangeNotifierProvider<AddShoppingListPageViewModel>(
+      create: (context) => AddShoppingListPageViewModel(),
+    )
   ];
 }

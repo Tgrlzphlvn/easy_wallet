@@ -4,7 +4,9 @@ import 'package:easy_wallet_v2/core/widgets/income_or_expense_alert_dialog.dart'
 import 'package:easy_wallet_v2/core/widgets/wallet_outline_button.dart';
 import 'package:easy_wallet_v2/feature/model/reporters.dart';
 import 'package:easy_wallet_v2/feature/view/home/home_view.dart';
+import 'package:easy_wallet_v2/feature/view/home/lists_view.dart';
 import 'package:easy_wallet_v2/feature/view/home/settings_view.dart';
+import 'package:easy_wallet_v2/feature/view/home/statics_view.dart';
 import 'package:easy_wallet_v2/feature/view/pages/add_income_or_expense_view.dart';
 import 'package:easy_wallet_v2/product/extensions/ui_settings_extensions.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +21,12 @@ class TabView extends StatefulWidget {
 class _TabViewState extends State<TabView> with BaseSingleton {
   int currentIndex = 0;
 
-  final pageList = [const HomeView(), const SettingsView()];
+  final pageList = [
+    const HomeView(),
+    const StaticsView(),
+    const ListsView(),
+    const SettingsView()
+  ];
 
   void changeIndex(int index) {
     setState(() {
@@ -55,6 +62,14 @@ class _TabViewState extends State<TabView> with BaseSingleton {
           BottomNavigationBarItem(
             icon: const Icon(Icons.wallet),
             label: LocalizationHelper.wallet,
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.insert_chart_outlined_rounded),
+            label: LocalizationHelper.statistics,
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.list_alt),
+            label: LocalizationHelper.lists,
           ),
           BottomNavigationBarItem(
             icon: const Icon(Icons.settings_outlined),

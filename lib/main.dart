@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget with BaseSingleton {
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
-      title: LocalizationHelper.appTitle,
+      title: 'title',
       theme: walletLightTheme.themeData,
       home: const TabView(),
     );

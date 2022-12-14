@@ -26,8 +26,8 @@ dependencies:
   lottie: ^1.4.3
   syncfusion_flutter_charts: ^20.3.52
   cupertino_icons: ^1.0.2
-  animate_do: ^3.0.2
-  shimmer: ^2.0.0
+  emojis: ^0.9.9
+
   google_fonts: ^3.0.1
 
 dev_dependencies:

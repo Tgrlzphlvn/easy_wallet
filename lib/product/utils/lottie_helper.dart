@@ -17,7 +17,10 @@ class LottieHelper {
 enum LottieEnum {
   cat('cat'),
   walletSettings('wallet_settings'),
-  walletman('wallet_man');
+  walletman('wallet_man'),
+  emptyList('empty_list'),
+  emptyNote('empty_note'),
+  shoppingBag('shopping_bag');
 
   final String name;
   const LottieEnum(this.name);

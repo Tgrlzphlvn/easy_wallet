@@ -60,5 +60,17 @@ class WalletLightTextTheme with BaseSingleton {
           color: walletColors.eerieBlack,
           wordSpacing: 2,
         ),
+        bodyText2: GoogleFonts.rubik(
+          fontSize: 14,
+          fontWeight: FontWeight.bold,
+          color: walletColors.bottleGreen,
+          wordSpacing: 2,
+        ),
+        labelMedium: GoogleFonts.rubik(
+          fontSize: 14,
+          fontWeight: FontWeight.bold,
+          color: walletColors.bittersweetShimmer,
+          wordSpacing: 2,
+        ),
       );
 }

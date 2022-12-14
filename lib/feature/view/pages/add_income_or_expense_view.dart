@@ -5,7 +5,6 @@ import 'package:easy_wallet_v2/core/widgets/wallet_outline_button.dart';
 import 'package:easy_wallet_v2/core/widgets/wallet_text_form_field.dart';
 import 'package:easy_wallet_v2/feature/model/account.dart';
 import 'package:easy_wallet_v2/feature/model/reporters.dart';
-import 'package:easy_wallet_v2/feature/view/home/home_view.dart';
 import 'package:easy_wallet_v2/feature/viewmodel/add_income_or_expense_view_model.dart.dart';
 import 'package:easy_wallet_v2/feature/viewmodel/home_view_model.dart';
 import 'package:easy_wallet_v2/product/extensions/ui_settings_extensions.dart';
@@ -123,9 +122,6 @@ class AddIncomeOrExpensePage extends StatelessWidget with BaseSingleton {
                     Provider.of<HomeViewModel>(context, listen: false).getAccounts();
                     Provider.of<HomeViewModel>(context, listen: false).getIncomes();
                     Provider.of<HomeViewModel>(context, listen: false).getExpenses();
-
-                    await Future.delayed(const Duration(seconds: 1));
-
                     Navigator.of(context).pop();
                   },
                 ),

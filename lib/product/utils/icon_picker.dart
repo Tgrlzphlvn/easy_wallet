@@ -1,7 +1,7 @@
 import 'package:easy_wallet_v2/feature/model/account.dart';
 import 'package:flutter/material.dart';
 
-class IconControllers {
+class IconPicker {
   static IconData expenseIconSelector(ExpenseProductTypes expenseProductTypes) {
     switch (expenseProductTypes) {
       case ExpenseProductTypes.general:

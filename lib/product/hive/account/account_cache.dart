@@ -33,7 +33,6 @@ class AccountCache extends HiveManager<Account> {
     return box?.values.toList() as List<Account>;
   }
 
-  @override
   Future<void> putObject(Account object) async {
     await box?.putAt(0, object);
   }

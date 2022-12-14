@@ -1,7 +1,8 @@
 {
-    "easy_wallet": "Easy Wallet",
     "wallet": "Wallet",
     "settings": "Settings",
+    "statistics": "Statistics",
+    "lists": "Lists",
     "current_balance": "Current Balance",
     "expenses": "Expense List",
     "incomes": "Income List",
@@ -11,5 +12,14 @@
     "account_number": "Account number",
     "save_account": "Save account",
     "choose_currency": "Choose a currency",
-    "cannot_empty": "This field cannot be left blank!"
+    "cannot_empty": "This field cannot be left blank!",
+    "name": "Name",
+    "amount": "Amount",
+    "choose_a_type": "Choose a type",
+    "please_select_the_data": "Please select the data type you want to add.",
+    "income": "Income",
+    "expense": "Expense",
+    "add_a_new_value": "Add a new value",
+    "save": "Save",
+    "easy_wallet": "Easy Wallet"
 }

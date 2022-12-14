@@ -5,6 +5,7 @@ import 'package:easy_wallet_v2/core/widgets/wallet_outline_button.dart';
 import 'package:easy_wallet_v2/core/widgets/wallet_text_form_field.dart';
 import 'package:easy_wallet_v2/feature/model/account.dart';
 import 'package:easy_wallet_v2/feature/viewmodel/add_account_page_view_model.dart';
+import 'package:easy_wallet_v2/feature/viewmodel/home_view_model.dart';
 import 'package:easy_wallet_v2/product/utils/lottie_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_wallet_v2/product/extensions/ui_settings_extensions.dart';
@@ -60,8 +61,8 @@ class AddAccountPage extends StatelessWidget with BaseSingleton {
                 padding: context.paddingAllHigh,
                 child: WalletOutlineButton(
                   title: LocalizationHelper.saveAccount,
-                  onPressed: () async {
-                    await Provider.of<AddAccountPageViewModel>(context, listen: false)
+                  onPressed: () {
+                    Provider.of<AddAccountPageViewModel>(context, listen: false)
                         .addAccount(
                       Account.create(
                         accountName: _accountNameController.text,
@@ -72,7 +73,7 @@ class AddAccountPage extends StatelessWidget with BaseSingleton {
                             .chosenCurrecyUnit,
                       ),
                     );
-                    await Future.delayed(const Duration(seconds: 1));
+                    Provider.of<HomeViewModel>(context, listen: false).getAccounts();
                     Navigator.pop(context);
                   },
                 ),

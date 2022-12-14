@@ -2,7 +2,7 @@ import 'package:easy_wallet_v2/core/base/base_singleton.dart';
 import 'package:easy_wallet_v2/feature/model/account.dart';
 import 'package:easy_wallet_v2/feature/viewmodel/home_view_model.dart';
 import 'package:easy_wallet_v2/product/utils/amount_validator.dart';
-import 'package:easy_wallet_v2/product/utils/icon_controllers.dart';
+import 'package:easy_wallet_v2/product/utils/icon_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_wallet_v2/product/extensions/ui_settings_extensions.dart';
 import 'package:provider/provider.dart';
@@ -22,9 +22,10 @@ class WalletListTile extends StatelessWidget with BaseSingleton {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: walletColors.white,
-          borderRadius: context.borderRadiusHigh,
-          boxShadow: [BoxShadow(color: walletColors.eerieBlack, blurRadius: 6)]),
+        color: walletColors.white,
+        borderRadius: context.borderRadiusHigh,
+        border: Border.all(color: walletColors.eerieBlack, width: 1),
+      ),
       child: ListTile(
         leading: _listTileLeading(context),
         title: _listTileTitle(),
@@ -36,16 +37,17 @@ class WalletListTile extends StatelessWidget with BaseSingleton {
 
   Container _listTileLeading(BuildContext context) {
     return Container(
-      width: context.widthGenerator(0.09),
-      height: context.heightGenerator(0.08),
+      width: context.widthGenerator(0.15),
+      height: context.heightGenerator(0.05),
       decoration: BoxDecoration(
         color: walletColors.white,
         borderRadius: context.borderRadiusHigh,
+        border: Border.all(color: walletColors.eerieBlack, width: 1),
       ),
       child: Icon(
         isIncome == true
-            ? IconControllers.incomeIconSelector(income!.incomeType)
-            : IconControllers.expenseIconSelector(expense!.productType),
+            ? IconPicker.incomeIconSelector(income!.incomeType)
+            : IconPicker.expenseIconSelector(expense!.productType),
         shadows: const [Shadow(blurRadius: 2)],
       ),
     );
@@ -71,16 +73,18 @@ class WalletListTile extends StatelessWidget with BaseSingleton {
       width: context.widthGenerator(0.3),
       height: context.heightGenerator(0.05),
       decoration: BoxDecoration(
-          color: walletColors.white,
-          borderRadius: context.borderRadiusHigh,
-          boxShadow: [BoxShadow(color: walletColors.eerieBlack, blurRadius: 6)]),
+        color: walletColors.white,
+        borderRadius: context.borderRadiusHigh,
+        border: Border.all(color: walletColors.eerieBlack, width: 1),
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(
-            account.currencyUnitIconSelector(account.currencyUnit),
-            size: 15,
-            shadows: const [Shadow(blurRadius: 2)],
+          Text(
+            isIncome == true ? '+' : '-',
+            style: isIncome == true
+                ? walletTextTheme.textTheme.bodyText2
+                : walletTextTheme.textTheme.labelMedium,
           ),
           Text(
             AmountValidator.amountValidator(
@@ -88,7 +92,14 @@ class WalletListTile extends StatelessWidget with BaseSingleton {
                   ? income!.amount.toString()
                   : expense!.amount.toString(),
             ),
-            style: walletTextTheme.textTheme.bodyText1,
+            style: isIncome == true
+                ? walletTextTheme.textTheme.bodyText2
+                : walletTextTheme.textTheme.labelMedium,
+          ),
+          Icon(
+            account.currencyUnitIconSelector(account.currencyUnit),
+            size: 15,
+            shadows: const [Shadow(blurRadius: 2)],
           ),
         ],
       ),

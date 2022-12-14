@@ -26,6 +26,8 @@ class WalletLightTheme with BaseSingleton {
           backgroundColor: walletColors.eerieBlack,
         ),
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          type: BottomNavigationBarType.fixed,
+          landscapeLayout: BottomNavigationBarLandscapeLayout.linear,
           backgroundColor: walletColors.paleSilver,
           unselectedLabelStyle: walletTextTheme.textTheme.subtitle2,
           selectedLabelStyle: walletTextTheme.textTheme.subtitle2,

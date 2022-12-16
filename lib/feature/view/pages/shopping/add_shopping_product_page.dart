@@ -1,59 +1,61 @@
 import 'package:easy_wallet_v2/core/base/base_singleton.dart';
+import 'package:easy_wallet_v2/core/localization/localization_helper.dart';
 import 'package:easy_wallet_v2/core/widgets/wallet_dropdown_button.dart';
 import 'package:easy_wallet_v2/core/widgets/wallet_outline_button.dart';
 import 'package:easy_wallet_v2/core/widgets/wallet_text_form_field.dart';
 import 'package:easy_wallet_v2/feature/model/shopping.dart';
-import 'package:easy_wallet_v2/feature/viewmodel/add_shopping_list_page_view_model.dart';
-import 'package:easy_wallet_v2/product/utils/lottie_helper.dart';
+import 'package:easy_wallet_v2/feature/viewmodel/add_shopping_list_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_wallet_v2/product/extensions/ui_settings_extensions.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
-class AddShoppingListPage extends StatelessWidget with BaseSingleton {
-  AddShoppingListPage({Key? key}) : super(key: key);
+class AddShoppingProductPage extends StatelessWidget with BaseSingleton {
+  AddShoppingProductPage({Key? key, required this.shoppingList}) : super(key: key);
+
+  final ShoppingList shoppingList;
 
   final TextEditingController _productNameController = TextEditingController();
   final TextEditingController _amountController = TextEditingController();
-  String selectedEmoji = 'Select a emoji';
+  final TextEditingController _pieceController = TextEditingController();
+  final TextEditingController _gramController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Add product'),
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Padding(
-            padding: context.paddingAllHigh,
-            child: LottieHelper.showLottie(
-              LottieEnum.shoppingBag,
-              lottieHeight: context.heightGenerator(0.18),
-            ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Padding(
+          padding: context.walletCardWidgetsPaddingLow,
+          child: _productTypeDropdownButton(context),
+        ),
+        Padding(
+          padding: context.walletCardWidgetsPaddingHigh,
+          child: _productNameTextFormField(),
+        ),
+        Padding(
+          padding: context.walletCardWidgetsPaddingHigh,
+          child: _amountTextFormField(),
+        ),
+        Padding(
+          padding: context.walletCardWidgetsPaddingHigh,
+          child: WalletTextFormField(
+              controller: _pieceController,
+              keyboardType: TextInputType.number,
+              action: TextInputAction.next,
+              inputFormatters: [],
+              label: 'Piece',
+              icon: Icons.category_sharp,
+              nextFocusValue: 24),
+        ),
+        Padding(
+          padding: context.walletCardWidgetsPaddingHigh,
+          child: WalletOutlineButton(
+            title: LocalizationHelper.save,
+            onPressed: () {},
           ),
-          Padding(
-            padding: context.walletCardWidgetsPaddingHigh,
-            child: _productTypeDropdownButton(context),
-          ),
-          Padding(
-            padding: context.walletCardWidgetsPaddingHigh,
-            child: _productNameTextFormField(),
-          ),
-          Padding(
-            padding: context.walletCardWidgetsPaddingHigh,
-            child: _amountTextFormField(),
-          ),
-          Padding(
-            padding: context.walletCardWidgetsPaddingHigh,
-            child: WalletOutlineButton(
-              title: selectedEmoji,
-              onPressed: () {},
-            ),
-          )
-        ],
-      ),
+        )
+      ],
     );
   }
 
@@ -67,11 +69,10 @@ class AddShoppingListPage extends StatelessWidget with BaseSingleton {
         ),
         WalletDropDownButton<ShoppingProducts>(
           onChanged: (value) {
-            Provider.of<AddShoppingListPageViewModel>(context, listen: false)
+            Provider.of<AddShoppingListViewModel>(context, listen: false)
                 .changeShoppingProducts(value ?? ShoppingProducts.other);
           },
-          value:
-              Provider.of<AddShoppingListPageViewModel>(context).choosenProductType,
+          value: Provider.of<AddShoppingListViewModel>(context).choosenProductType,
           items: ShoppingProducts.values
               .map<DropdownMenuItem<ShoppingProducts>>(
                 (value) => DropdownMenuItem(

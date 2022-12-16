@@ -38,6 +38,12 @@ extension PaddingExtension on BuildContext {
         right: heightValue003,
         left: heightValue003,
       );
+  EdgeInsets get addListPaddingNormal => EdgeInsets.only(
+        top: heightValue01,
+        right: heightValue003,
+        left: heightValue003,
+        bottom: heightValue04,
+      );
 }
 
 extension MediaQueryExtension on BuildContext {
@@ -55,6 +61,9 @@ extension MediaQueryExtension on BuildContext {
   double get heightValue008 => height * 0.08;
   double get heightValue009 => height * 0.09;
   double get heightValue01 => height * 0.1;
+  double get heightValue02 => height * 0.2;
+  double get heightValue03 => height * 0.3;
+  double get heightValue04 => height * 0.4;
 
   double get widthValue001 => width * 0.01;
   double get widthValue002 => width * 0.02;

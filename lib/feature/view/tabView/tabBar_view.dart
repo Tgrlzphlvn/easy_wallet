@@ -7,7 +7,7 @@ import 'package:easy_wallet_v2/feature/view/home/home_view.dart';
 import 'package:easy_wallet_v2/feature/view/home/lists_view.dart';
 import 'package:easy_wallet_v2/feature/view/home/settings_view.dart';
 import 'package:easy_wallet_v2/feature/view/home/statics_view.dart';
-import 'package:easy_wallet_v2/feature/view/pages/add_income_or_expense_view.dart';
+import 'package:easy_wallet_v2/feature/view/pages/account/add_income_or_expense_view.dart';
 import 'package:easy_wallet_v2/product/extensions/ui_settings_extensions.dart';
 import 'package:flutter/material.dart';
 

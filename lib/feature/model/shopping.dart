@@ -39,7 +39,7 @@ class Shopping extends HiveObject {
   Shopping({
     required this.productName,
     required this.price,
-    required this.piece,
+    this.piece = 1,
     required this.productsType,
     this.gram,
   });

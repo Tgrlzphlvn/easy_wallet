@@ -12,13 +12,8 @@ class HomeViewModel extends ChangeNotifier with BaseSingleton {
   List<Income> incomes = [];
   List<Expense> expenses = [];
 
-  bool isLoading = false;
   bool isIncomeList = true;
 
-  void changeLoading() {
-    isLoading = !isLoading;
-    notifyListeners();
-  }
 
   void changeListType() {
     isIncomeList = !isIncomeList;
@@ -26,29 +21,23 @@ class HomeViewModel extends ChangeNotifier with BaseSingleton {
   }
 
   Future<void> getAccounts() async {
-    changeLoading();
     await _accountCache.init();
     accounts = _accountCache.getObjects() ?? [];
     if (accounts.isEmpty) accounts = AccountMock.mockAccount;
-    changeLoading();
     notifyListeners();
   }
 
   Future<void> getIncomes() async {
-    changeLoading();
     await _accountCache.init();
     await getAccounts();
     incomes = accounts[0].income;
-    changeLoading();
     notifyListeners();
   }
 
   Future<void> getExpenses() async {
-    changeLoading();
     await _accountCache.init();
     await getAccounts();
     expenses = accounts[0].expenses;
-    changeLoading();
     notifyListeners();
   }
 

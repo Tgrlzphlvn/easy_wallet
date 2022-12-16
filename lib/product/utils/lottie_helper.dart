@@ -20,7 +20,8 @@ enum LottieEnum {
   walletman('wallet_man'),
   emptyList('empty_list'),
   emptyNote('empty_note'),
-  shoppingBag('shopping_bag');
+  shoppingBag('shopping_bag'),
+  checkList('check_list');
 
   final String name;
   const LottieEnum(this.name);

@@ -17,7 +17,15 @@ class ShoppingCache extends HiveManager<ShoppingList> {
 
   @override
   Future<void> addObject(ShoppingList object) async {
-    await box?.put(object.id, object);
+    List<ShoppingList> list = getObjects() as List<ShoppingList>;
+    for (var i in list) {
+      if (object.id == i.id) {
+        await deleteObject(i);
+        await box?.put(object.id, object);
+      } else {
+        await box?.put(object.id, object);
+      }
+    }
   }
 
   @override
@@ -28,9 +36,5 @@ class ShoppingCache extends HiveManager<ShoppingList> {
   @override
   List<ShoppingList>? getObjects() {
     return box?.values.toList() as List<ShoppingList>;
-  }
-
-  Future<void> putAtObject(Shopping object, int index) async {
-    await box?.putAt(index, object);
   }
 }

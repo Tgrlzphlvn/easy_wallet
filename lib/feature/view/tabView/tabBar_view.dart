@@ -1,6 +1,6 @@
 import 'package:easy_wallet_v2/core/base/base_singleton.dart';
 import 'package:easy_wallet_v2/core/localization/localization_helper.dart';
-import 'package:easy_wallet_v2/core/widgets/income_or_expense_alert_dialog.dart';
+import 'package:easy_wallet_v2/core/widgets/wallet_alert_dialog.dart';
 import 'package:easy_wallet_v2/core/widgets/wallet_outline_button.dart';
 import 'package:easy_wallet_v2/feature/model/reporters.dart';
 import 'package:easy_wallet_v2/feature/view/home/home_view.dart';
@@ -49,6 +49,7 @@ class _TabViewState extends State<TabView> with BaseSingleton {
               context: context,
               builder: (context) {
                 return IncomeOrExpenseAlertDialog(
+                  title: LocalizationHelper.pleaseSelectTheDataType,
                   actions: _actionsList(context),
                 );
               },

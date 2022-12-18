@@ -2,6 +2,7 @@ import 'package:easy_wallet_v2/core/base/base_singleton.dart';
 import 'package:easy_wallet_v2/core/localization/localization_helper.dart';
 import 'package:easy_wallet_v2/core/widgets/wallet_dropdown_button.dart';
 import 'package:easy_wallet_v2/core/widgets/wallet_outline_button.dart';
+import 'package:easy_wallet_v2/core/widgets/wallet_sheet_divider.dart';
 import 'package:easy_wallet_v2/core/widgets/wallet_text_form_field.dart';
 import 'package:easy_wallet_v2/feature/model/shopping.dart';
 import 'package:easy_wallet_v2/feature/viewmodel/add_shopping_list_view_model.dart';
@@ -17,14 +18,13 @@ class AddShoppingProductPage extends StatelessWidget with BaseSingleton {
 
   final TextEditingController _productNameController = TextEditingController();
   final TextEditingController _amountController = TextEditingController();
-  final TextEditingController _pieceController = TextEditingController();
-  final TextEditingController _gramController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
+    return Wrap(
+      alignment: WrapAlignment.center,
       children: [
+        const WalletDivider(),
         Padding(
           padding: context.walletCardWidgetsPaddingLow,
           child: _productTypeDropdownButton(context),
@@ -39,22 +39,91 @@ class AddShoppingProductPage extends StatelessWidget with BaseSingleton {
         ),
         Padding(
           padding: context.walletCardWidgetsPaddingHigh,
-          child: WalletTextFormField(
-              controller: _pieceController,
-              keyboardType: TextInputType.number,
-              action: TextInputAction.next,
-              inputFormatters: [],
-              label: 'Piece',
-              icon: Icons.category_sharp,
-              nextFocusValue: 24),
+          child: _pieceRow(context),
         ),
         Padding(
-          padding: context.walletCardWidgetsPaddingHigh,
-          child: WalletOutlineButton(
-            title: LocalizationHelper.save,
-            onPressed: () {},
+          padding: context.paddingAllHigh,
+          child: _saveButton(context),
+        ),
+      ],
+    );
+  }
+
+  WalletOutlineButton _saveButton(BuildContext context) {
+    return WalletOutlineButton(
+      title: LocalizationHelper.save,
+      onPressed: () {
+        Provider.of<AddShoppingListViewModel>(context, listen: false)
+            .addShoppingList(
+          ShoppingList.add(
+            id: shoppingList.id,
+            shoppingProducts: shoppingList.shoppingProducts +
+                [
+                  Shopping(
+                    productName: _productNameController.text,
+                    price: int.parse(_amountController.text),
+                    productsType:
+                        Provider.of<AddShoppingListViewModel>(context, listen: false)
+                            .choosenProductType,
+                    piece:
+                        Provider.of<AddShoppingListViewModel>(context, listen: false)
+                            .pieceCounter,
+                  )
+                ],
+            listName: shoppingList.listName,
           ),
-        )
+        );
+        Provider.of<AddShoppingListViewModel>(context, listen: false)
+            .getShoppingLists();
+        Navigator.of(context).pop();
+      },
+    );
+  }
+
+  Widget _pieceRow(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        Text(
+          'How many?',
+          style: walletTextTheme.textTheme.bodyText1,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            WalletOutlineButton(
+              title: '+',
+              onPressed: () {
+                Provider.of<AddShoppingListViewModel>(context, listen: false)
+                    .incrementPiece();
+              },
+            ),
+            Container(
+              width: context.widthGenerator(0.15),
+              height: context.heightGenerator(0.055),
+              decoration: BoxDecoration(
+                color: walletColors.white,
+                borderRadius: context.borderRadiusHigh,
+                border: Border.all(color: walletColors.eerieBlack, width: 1),
+              ),
+              child: Center(
+                child: Text(
+                  Provider.of<AddShoppingListViewModel>(context)
+                      .pieceCounter
+                      .toString(),
+                  style: walletTextTheme.textTheme.headline5,
+                ),
+              ),
+            ),
+            WalletOutlineButton(
+              title: '-',
+              onPressed: () {
+                Provider.of<AddShoppingListViewModel>(context, listen: false)
+                    .reducePiece();
+              },
+            ),
+          ],
+        ),
       ],
     );
   }

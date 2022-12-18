@@ -8,7 +8,7 @@ part 'shopping.g.dart';
 @HiveType(typeId: ShoppingIdentifire.shoppingListId)
 class ShoppingList extends HiveObject {
   @HiveField(0)
-  String id = const Uuid().v1();
+  final String id;
   @HiveField(1)
   DateTime createdTime = DateTime.now();
   @HiveField(2)
@@ -16,7 +16,34 @@ class ShoppingList extends HiveObject {
   @HiveField(3)
   final String listName;
 
-  ShoppingList(this.shoppingProducts, this.listName);
+  ShoppingList({
+    required this.shoppingProducts,
+    required this.listName,
+    required this.id,
+  });
+
+  factory ShoppingList.add({
+    required String id,
+    required List<Shopping> shoppingProducts,
+    required String listName,
+  }) {
+    return ShoppingList(
+      shoppingProducts: shoppingProducts,
+      listName: listName,
+      id: id,
+    );
+  }
+
+  factory ShoppingList.create({
+    required List<Shopping> shoppingProducts,
+    required String listName,
+  }) {
+    return ShoppingList(
+      shoppingProducts: shoppingProducts,
+      listName: listName,
+      id: const Uuid().v1(),
+    );
+  }
 }
 
 @HiveType(typeId: ShoppingIdentifire.shoppingId)
@@ -33,15 +60,12 @@ class Shopping extends HiveObject {
   final int price;
   @HiveField(5)
   final int piece;
-  @HiveField(6)
-  final int? gram;
 
   Shopping({
     required this.productName,
     required this.price,
     this.piece = 1,
     required this.productsType,
-    this.gram,
   });
 }
 

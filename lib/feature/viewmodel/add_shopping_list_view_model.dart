@@ -7,8 +7,21 @@ class AddShoppingListViewModel extends ChangeNotifier {
   final ShoppingCache _shoppingCache = ShoppingCache(ShoppingKey.shoppingKey);
 
   ShoppingProducts choosenProductType = ShoppingProducts.other;
+  int pieceCounter = 1;
 
   List<ShoppingList> shoppingLists = [];
+
+  void incrementPiece() {
+    pieceCounter += 1;
+    notifyListeners();
+  }
+
+  void reducePiece() {
+    if (pieceCounter != 0) {
+      pieceCounter -= 1;
+    }
+    notifyListeners();
+  }
 
   void changeShoppingProducts(ShoppingProducts selectedType) {
     choosenProductType = selectedType;
@@ -26,8 +39,8 @@ class AddShoppingListViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> addProduct(Shopping shopping, int index) async {
-    await _shoppingCache.putAtObject(shopping, index);
+  Future<void> deleteShoppingList(ShoppingList list) async {
+    await _shoppingCache.deleteObject(list);
     notifyListeners();
   }
 }

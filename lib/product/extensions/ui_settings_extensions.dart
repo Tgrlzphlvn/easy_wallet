@@ -44,6 +44,12 @@ extension PaddingExtension on BuildContext {
         left: heightValue003,
         bottom: heightValue04,
       );
+  EdgeInsets get pieceTextPadding => EdgeInsets.only(
+        top: heightValue0015,
+        right: heightValue002,
+        left: heightValue002,
+        bottom: heightValue0015,
+      );
 }
 
 extension MediaQueryExtension on BuildContext {
@@ -52,6 +58,7 @@ extension MediaQueryExtension on BuildContext {
   double get width => mediaQuery.size.width;
 
   double get heightValue001 => height * 0.01;
+  double get heightValue0015 => height * 0.015;
   double get heightValue002 => height * 0.02;
   double get heightValue003 => height * 0.03;
   double get heightValue004 => height * 0.04;

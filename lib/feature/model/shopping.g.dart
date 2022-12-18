@@ -17,11 +17,10 @@ class ShoppingListAdapter extends TypeAdapter<ShoppingList> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return ShoppingList(
-      (fields[2] as List).cast<Shopping>(),
-      fields[3] as String,
-    )
-      ..id = fields[0] as String
-      ..createdTime = fields[1] as DateTime;
+      shoppingProducts: (fields[2] as List).cast<Shopping>(),
+      listName: fields[3] as String,
+      id: fields[0] as String,
+    )..createdTime = fields[1] as DateTime;
   }
 
   @override
@@ -64,7 +63,6 @@ class ShoppingAdapter extends TypeAdapter<Shopping> {
       price: fields[4] as int,
       piece: fields[5] as int,
       productsType: fields[3] as ShoppingProducts,
-      gram: fields[6] as int?,
     )
       ..id = fields[0] as String
       ..createdTime = fields[1] as DateTime;
@@ -73,7 +71,7 @@ class ShoppingAdapter extends TypeAdapter<Shopping> {
   @override
   void write(BinaryWriter writer, Shopping obj) {
     writer
-      ..writeByte(7)
+      ..writeByte(6)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -85,9 +83,7 @@ class ShoppingAdapter extends TypeAdapter<Shopping> {
       ..writeByte(4)
       ..write(obj.price)
       ..writeByte(5)
-      ..write(obj.piece)
-      ..writeByte(6)
-      ..write(obj.gram);
+      ..write(obj.piece);
   }
 
   @override

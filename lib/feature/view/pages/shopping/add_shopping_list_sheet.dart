@@ -31,9 +31,9 @@ class AddShoppingListSheet extends StatelessWidget with BaseSingleton {
             onPressed: () {
               Provider.of<AddShoppingListViewModel>(context, listen: false)
                   .addShoppingList(
-                ShoppingList(
-                  [],
-                  _nameController.text,
+                ShoppingList.create(
+                  shoppingProducts: [],
+                  listName: _nameController.text,
                 ),
               );
               Provider.of<AddShoppingListViewModel>(context, listen: false)

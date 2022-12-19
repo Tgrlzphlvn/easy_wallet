@@ -11,11 +11,10 @@ import 'package:easy_wallet_v2/product/extensions/ui_settings_extensions.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
-class AddShoppingProductPage extends StatelessWidget with BaseSingleton {
-  AddShoppingProductPage({Key? key, required this.shoppingList}) : super(key: key);
+class AddShoppingProductSheet extends StatelessWidget with BaseSingleton {
+  AddShoppingProductSheet({Key? key, required this.shoppingList}) : super(key: key);
 
   final ShoppingList shoppingList;
-
   final TextEditingController _productNameController = TextEditingController();
   final TextEditingController _amountController = TextEditingController();
 
@@ -52,31 +51,33 @@ class AddShoppingProductPage extends StatelessWidget with BaseSingleton {
   WalletOutlineButton _saveButton(BuildContext context) {
     return WalletOutlineButton(
       title: LocalizationHelper.save,
-      onPressed: () {
-        Provider.of<AddShoppingListViewModel>(context, listen: false)
-            .addShoppingList(
-          ShoppingList.add(
-            id: shoppingList.id,
-            shoppingProducts: shoppingList.shoppingProducts +
-                [
-                  Shopping(
-                    productName: _productNameController.text,
-                    price: int.parse(_amountController.text),
-                    productsType:
-                        Provider.of<AddShoppingListViewModel>(context, listen: false)
-                            .choosenProductType,
-                    piece:
-                        Provider.of<AddShoppingListViewModel>(context, listen: false)
-                            .pieceCounter,
-                  )
-                ],
-            listName: shoppingList.listName,
-          ),
-        );
-        Provider.of<AddShoppingListViewModel>(context, listen: false)
-            .getShoppingLists();
-        Navigator.of(context).pop();
-      },
+      onPressed:
+          _amountController.text.isEmpty || _productNameController.text.isEmpty
+              ? null
+              : () {
+                  Provider.of<AddShoppingListViewModel>(context, listen: false)
+                      .addShoppingList(
+                    ShoppingList.add(
+                      id: shoppingList.id,
+                      shoppingProducts: shoppingList.shoppingProducts +
+                          [
+                            Shopping(
+                              productName: _productNameController.text,
+                              price: int.parse(_amountController.text),
+                              productsType: Provider.of<AddShoppingListViewModel>(
+                                      context,
+                                      listen: false)
+                                  .choosenProductType,
+                              piece: Provider.of<AddShoppingListViewModel>(context,
+                                      listen: false)
+                                  .pieceCounter,
+                            )
+                          ],
+                      listName: shoppingList.listName,
+                    ),
+                  );
+                  Navigator.of(context).pop();
+                },
     );
   }
 

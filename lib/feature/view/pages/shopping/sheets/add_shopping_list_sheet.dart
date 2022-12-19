@@ -26,9 +26,18 @@ class AddShoppingListSheet extends StatelessWidget with BaseSingleton {
         ),
         Padding(
           padding: context.walletCardWidgetsPaddingHigh,
-          child: WalletOutlineButton(
-            title: 'Save',
-            onPressed: () {
+          child: _saveButton(context),
+        ),
+      ],
+    );
+  }
+
+  WalletOutlineButton _saveButton(BuildContext context) {
+    return WalletOutlineButton(
+      title: 'Save',
+      onPressed: _nameController.text.isEmpty
+          ? null
+          : () {
               Provider.of<AddShoppingListViewModel>(context, listen: false)
                   .addShoppingList(
                 ShoppingList.create(
@@ -40,9 +49,6 @@ class AddShoppingListSheet extends StatelessWidget with BaseSingleton {
                   .getShoppingLists();
               Navigator.of(context).pop();
             },
-          ),
-        ),
-      ],
     );
   }
 

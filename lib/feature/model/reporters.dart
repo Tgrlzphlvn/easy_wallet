@@ -1,5 +1,5 @@
-class IncomeOrExpense {
-  final bool isIncomeOrExpense;
+class Reporter {
+  final bool isThis;
 
-  IncomeOrExpense(this.isIncomeOrExpense);
+  Reporter(this.isThis);
 }

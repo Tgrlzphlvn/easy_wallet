@@ -8,6 +8,14 @@ extension ShoppingListExtension on ShoppingList {
   String getMonthYear() {
     return '${createdTime.month}.${createdTime.year}';
   }
+
+  int subShoppingPrice() {
+    int total = 0;
+    for (var i in shoppingProducts) {
+      total += i.piece * i.price;
+    }
+    return total;
+  }
 }
 
 extension ShoppingExtension on Shopping {
@@ -17,5 +25,9 @@ extension ShoppingExtension on Shopping {
 
   String getMonthYear() {
     return '${createdTime.month}.${createdTime.year}';
+  }
+
+  int pricePieceImpact() {
+    return piece * price;
   }
 }

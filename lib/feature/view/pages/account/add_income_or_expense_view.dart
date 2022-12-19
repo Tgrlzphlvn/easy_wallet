@@ -17,7 +17,7 @@ class AddIncomeOrExpensePage extends StatelessWidget with BaseSingleton {
   AddIncomeOrExpensePage({Key? key, required this.incomeOrExpense})
       : super(key: key);
 
-  final IncomeOrExpense incomeOrExpense;
+  final Reporter incomeOrExpense;
 
   final TextEditingController _nameTextFieldController = TextEditingController();
   final TextEditingController _amountTextFieldController = TextEditingController();
@@ -93,7 +93,7 @@ class AddIncomeOrExpensePage extends StatelessWidget with BaseSingleton {
                         accounHolderName: _account.accounHolderName,
                         accountNumber: _account.accountNumber,
                         currencyUnit: _account.currencyUnit,
-                        expenses: incomeOrExpense.isIncomeOrExpense == true
+                        expenses: incomeOrExpense.isThis == true
                             ? _account.expenses +
                                 [
                                   Expense(
@@ -105,7 +105,7 @@ class AddIncomeOrExpensePage extends StatelessWidget with BaseSingleton {
                                       int.parse(_amountTextFieldController.text))
                                 ]
                             : _account.expenses,
-                        income: incomeOrExpense.isIncomeOrExpense == false
+                        income: incomeOrExpense.isThis == false
                             ? _account.income +
                                 [
                                   Income(
@@ -134,7 +134,7 @@ class AddIncomeOrExpensePage extends StatelessWidget with BaseSingleton {
   }
 
   WalletDropDownButton _incomeOrExpenseDropDownButton(BuildContext context) {
-    if (incomeOrExpense.isIncomeOrExpense == true) {
+    if (incomeOrExpense.isThis == true) {
       return WalletDropDownButton<ExpenseProductTypes>(
         onChanged: (value) {
           Provider.of<AddIncomeOrExpenseViewModel>(context, listen: false)

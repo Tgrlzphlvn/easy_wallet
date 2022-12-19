@@ -2,7 +2,7 @@ import 'package:easy_wallet_v2/core/base/base_singleton.dart';
 import 'package:easy_wallet_v2/core/localization/localization_helper.dart';
 import 'package:easy_wallet_v2/core/widgets/list_card.dart';
 import 'package:easy_wallet_v2/feature/model/shopping.dart';
-import 'package:easy_wallet_v2/feature/view/pages/shopping/add_shopping_list_sheet.dart';
+import 'package:easy_wallet_v2/feature/view/pages/shopping/sheets/add_shopping_list_sheet.dart';
 import 'package:easy_wallet_v2/feature/view/pages/shopping/shopping_list_page.dart';
 import 'package:easy_wallet_v2/feature/viewmodel/add_shopping_list_view_model.dart';
 import 'package:easy_wallet_v2/product/extensions/ui_settings_extensions.dart';

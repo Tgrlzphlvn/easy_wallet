@@ -41,7 +41,6 @@ class WalletTextFormField extends StatelessWidget with BaseSingleton {
         WalletValidators.instance.mockNameController(value);
       },
       onChanged: (value) {
-        print(value);
         if (value.length == nextFocusValue) {
           FocusScope.of(context).nextFocus();
         } else if (value.isEmpty) {

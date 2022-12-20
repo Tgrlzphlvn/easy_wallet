@@ -12,14 +12,16 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 class AddShoppingProductSheet extends StatelessWidget with BaseSingleton {
-  AddShoppingProductSheet({Key? key, required this.shoppingList}) : super(key: key);
+  AddShoppingProductSheet({Key? key, required this.index}) : super(key: key);
 
-  final ShoppingList shoppingList;
+  final int index;
   final TextEditingController _productNameController = TextEditingController();
   final TextEditingController _amountController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    ShoppingList shoppingList =
+        Provider.of<AddShoppingListViewModel>(context, listen: false).shopping;
     return Wrap(
       alignment: WrapAlignment.center,
       children: [
@@ -42,13 +44,13 @@ class AddShoppingProductSheet extends StatelessWidget with BaseSingleton {
         ),
         Padding(
           padding: context.paddingAllHigh,
-          child: _saveButton(context),
+          child: _saveButton(context, shoppingList),
         ),
       ],
     );
   }
 
-  WalletOutlineButton _saveButton(BuildContext context) {
+  WalletOutlineButton _saveButton(BuildContext context, ShoppingList shoppingList) {
     return WalletOutlineButton(
       title: LocalizationHelper.save,
       onPressed:
@@ -76,6 +78,8 @@ class AddShoppingProductSheet extends StatelessWidget with BaseSingleton {
                       listName: shoppingList.listName,
                     ),
                   );
+                  Provider.of<AddShoppingListViewModel>(context, listen: false)
+                      .getSelectedIndexList(index);
                   Navigator.of(context).pop();
                 },
     );

@@ -60,10 +60,11 @@ class ListsView extends StatelessWidget with BaseSingleton {
           child: ListsCard(
             shoppingList: shoppingList,
             onPressed: () {
+            Provider.of<AddShoppingListViewModel>(context, listen: false).getSelectedIndexList(index);
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => ShoppingListPage(
-                    shoppingList: shoppingList,
+                    index: index,
                   ),
                 ),
               );

@@ -10,6 +10,7 @@ class AddShoppingListViewModel extends ChangeNotifier {
   int pieceCounter = 1;
 
   List<ShoppingList> shoppingLists = [];
+  late ShoppingList shopping;
 
   void incrementPiece() {
     pieceCounter += 1;
@@ -41,6 +42,12 @@ class AddShoppingListViewModel extends ChangeNotifier {
 
   Future<void> deleteShoppingList(ShoppingList list) async {
     await _shoppingCache.deleteObject(list);
+    notifyListeners();
+  }
+
+  Future<void> getSelectedIndexList(int index) async {
+    await getShoppingLists();
+    shopping = shoppingLists[index];
     notifyListeners();
   }
 }

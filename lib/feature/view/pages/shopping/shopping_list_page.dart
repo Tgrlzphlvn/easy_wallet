@@ -19,14 +19,16 @@ import 'package:easy_wallet_v2/product/utils/shopping_icon_picker.dart';
 class ShoppingListPage extends StatelessWidget with BaseSingleton {
   ShoppingListPage({
     Key? key,
-    required this.shoppingList,
+    required this.index,
   }) : super(key: key);
 
-  final ShoppingList shoppingList;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
-    Account account = Provider.of<HomeViewModel>(context).accounts[0];
+    Account account = Provider.of<HomeViewModel>(context, listen: false).accounts[0];
+    ShoppingList shoppingList =
+        Provider.of<AddShoppingListViewModel>(context, listen: false).shopping;
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -34,8 +36,8 @@ class ShoppingListPage extends StatelessWidget with BaseSingleton {
           style: walletTextTheme.textTheme.headline5,
         ),
         actions: [
-          _showDeleteAlertDialog(context),
-          _showAddProductSheet(context),
+          _showDeleteAlertDialog(context, shoppingList),
+          _showAddProductSheet(context, shoppingList),
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
@@ -73,13 +75,16 @@ class ShoppingListPage extends StatelessWidget with BaseSingleton {
           ],
         ),
       ),
-      body: shoppingList.shoppingProducts.isEmpty
+      body: Provider.of<AddShoppingListViewModel>(context)
+              .shopping
+              .shoppingProducts
+              .isEmpty
           ? _isEmptyLottie()
-          : _shoppingProductsList(context, account),
+          : _shoppingProductsList(context, account, shoppingList),
     );
   }
 
-  IconButton _showDeleteAlertDialog(BuildContext context) {
+  IconButton _showDeleteAlertDialog(BuildContext context, ShoppingList shopping) {
     return IconButton(
       icon: const Icon(Icons.delete_forever),
       onPressed: () {
@@ -99,9 +104,10 @@ class ShoppingListPage extends StatelessWidget with BaseSingleton {
                   title: 'Delete',
                   onPressed: () {
                     Provider.of<AddShoppingListViewModel>(context, listen: false)
-                        .deleteShoppingList(shoppingList);
+                        .deleteShoppingList(shopping);
                     Provider.of<AddShoppingListViewModel>(context, listen: false)
                         .getShoppingLists();
+                    Navigator.of(context).pop();
                     Navigator.of(context).pop();
                   },
                 ),
@@ -113,7 +119,7 @@ class ShoppingListPage extends StatelessWidget with BaseSingleton {
     );
   }
 
-  IconButton _showAddProductSheet(BuildContext context) {
+  IconButton _showAddProductSheet(BuildContext context, ShoppingList shoppingList) {
     return IconButton(
       icon: const Icon(Icons.add),
       onPressed: () {
@@ -125,9 +131,13 @@ class ShoppingListPage extends StatelessWidget with BaseSingleton {
           ),
           context: context,
           builder: (context) {
+            Provider.of<AddShoppingListViewModel>(context, listen: false)
+                .getSelectedIndexList(index);
             return Padding(
               padding: MediaQuery.of(context).viewInsets,
-              child: AddShoppingProductSheet(shoppingList: shoppingList),
+              child: AddShoppingProductSheet(
+                index: index,
+              ),
             );
           },
         );
@@ -144,11 +154,18 @@ class ShoppingListPage extends StatelessWidget with BaseSingleton {
     );
   }
 
-  ListView _shoppingProductsList(BuildContext context, Account account) {
+  ListView _shoppingProductsList(
+      BuildContext context, Account account, ShoppingList shoppingList) {
     return ListView.builder(
-      itemCount: shoppingList.shoppingProducts.length,
+      itemCount: Provider.of<AddShoppingListViewModel>(context)
+          .shopping
+          .shoppingProducts
+          .length,
       itemBuilder: (context, index) {
-        Shopping shopping = shoppingList.shoppingProducts[index];
+        Shopping shopping =
+            Provider.of<AddShoppingListViewModel>(context, listen: false)
+                .shopping
+                .shoppingProducts[index];
         return Padding(
           padding: context.paddingAllLow,
           child: Container(

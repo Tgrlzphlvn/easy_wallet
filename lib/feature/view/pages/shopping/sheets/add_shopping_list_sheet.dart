@@ -35,20 +35,18 @@ class AddShoppingListSheet extends StatelessWidget with BaseSingleton {
   WalletOutlineButton _saveButton(BuildContext context) {
     return WalletOutlineButton(
       title: 'Save',
-      onPressed: _nameController.text.isEmpty
-          ? null
-          : () {
-              Provider.of<AddShoppingListViewModel>(context, listen: false)
-                  .addShoppingList(
-                ShoppingList.create(
-                  shoppingProducts: [],
-                  listName: _nameController.text,
-                ),
-              );
-              Provider.of<AddShoppingListViewModel>(context, listen: false)
-                  .getShoppingLists();
-              Navigator.of(context).pop();
-            },
+      onPressed: () {
+        Provider.of<AddShoppingListViewModel>(context, listen: false)
+            .addShoppingList(
+          ShoppingList.create(
+            shoppingProducts: [],
+            listName: _nameController.text,
+          ),
+        );
+        Provider.of<AddShoppingListViewModel>(context, listen: false)
+            .getShoppingLists();
+        Navigator.of(context).pop();
+      },
     );
   }
 

@@ -82,6 +82,12 @@ class _TabViewState extends State<TabView> with BaseSingleton {
         ],
         onTap: (index) {
           changeIndex(index);
+          if (index == 0) {
+            Provider.of<HomeViewModel>(context, listen: false).getAccounts();
+            Provider.of<HomeViewModel>(context, listen: false).getIncomes();
+          } else if (index == 2) {
+            Provider.of<AddShoppingListViewModel>(context, listen: false).getShoppingLists();
+          }
         },
       ),
       body: pageList[currentIndex],

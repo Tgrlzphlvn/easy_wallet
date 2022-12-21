@@ -11,64 +11,66 @@ class WalletLightTextTheme with BaseSingleton {
 
   WalletLightTextTheme._init();
 
+  final FontWeight _fontWeight = FontWeight.w500;
+
   TextTheme get textTheme => TextTheme(
         headline3: GoogleFonts.rubik(
           fontSize: 26,
-          fontWeight: FontWeight.bold,
+          fontWeight: _fontWeight,
           color: walletColors.eerieBlack,
           wordSpacing: 1,
         ),
         headline4: GoogleFonts.rubik(
           fontSize: 24,
-          fontWeight: FontWeight.bold,
+          fontWeight: _fontWeight,
           color: walletColors.white,
           wordSpacing: 2,
         ),
         headline5: GoogleFonts.rubik(
           fontSize: 18,
-          fontWeight: FontWeight.bold,
+          fontWeight: _fontWeight,
           color: walletColors.eerieBlack,
           wordSpacing: 2,
         ),
         subtitle1: GoogleFonts.rubik(
           fontSize: 14,
-          fontWeight: FontWeight.bold,
+          fontWeight: _fontWeight,
           color: walletColors.white,
           wordSpacing: 2,
         ),
         subtitle2: GoogleFonts.rubik(
           fontSize: 12,
-          fontWeight: FontWeight.bold,
+          fontWeight: _fontWeight,
           color: walletColors.white,
           wordSpacing: 2,
         ),
         button: GoogleFonts.rubik(
           fontSize: 16,
-          fontWeight: FontWeight.bold,
+          fontWeight: _fontWeight,
           color: walletColors.eerieBlack,
           wordSpacing: 2,
         ),
         caption: GoogleFonts.rubik(
           fontSize: 10,
-          fontWeight: FontWeight.bold,
+          fontWeight: _fontWeight,
           color: walletColors.eerieBlack,
           wordSpacing: 2,
         ),
         bodyText1: GoogleFonts.rubik(
           fontSize: 14,
-          fontWeight: FontWeight.bold,
+          fontWeight: _fontWeight,
           color: walletColors.eerieBlack,
           wordSpacing: 2,
         ),
         bodyText2: GoogleFonts.rubik(
           fontSize: 14,
-          fontWeight: FontWeight.bold,
+          fontWeight: _fontWeight,
           color: walletColors.bottleGreen,
           wordSpacing: 2,
         ),
         labelMedium: GoogleFonts.rubik(
           fontSize: 14,
-          fontWeight: FontWeight.bold,
+          fontWeight: _fontWeight,
           color: walletColors.bittersweetShimmer,
           wordSpacing: 2,
         ),

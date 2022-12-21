@@ -14,8 +14,7 @@ class StaticsView extends StatelessWidget with BaseSingleton {
 
   @override
   Widget build(BuildContext context) {
-    final _listenProvider = Provider.of<StatisticViewModel>(context);
-    final _readProvider = Provider.of<StatisticViewModel>(context, listen: false);
+    final readProvider = Provider.of<StatisticViewModel>(context, listen: false);
 
     return Scaffold(
       appBar: AppBar(
@@ -28,14 +27,14 @@ class StaticsView extends StatelessWidget with BaseSingleton {
               padding: context.paddingAllLow,
               child: StatisticsCard(
                 title: 'En yüksek gelirler',
-                incomes: _readProvider.incomes,
+                incomes: readProvider.incomes,
               ),
             ),
             Padding(
               padding: context.paddingAllLow,
               child: StatisticsCard(
                 title: 'En yüksek gelirler',
-                expenses: _readProvider.expenses,
+                expenses: readProvider.expenses,
               ),
             )
           ],
@@ -59,7 +58,7 @@ class StatisticsCard extends StatelessWidget with BaseSingleton {
 
   @override
   Widget build(BuildContext context) {
-    final Account _account =
+    final Account account =
         Provider.of<HomeViewModel>(context, listen: false).accounts[0];
     return Container(
       height: context.heightGenerator(0.4),
@@ -75,7 +74,7 @@ class StatisticsCard extends StatelessWidget with BaseSingleton {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: StatisticChart(
-                account: _account,
+                account: account,
                 income: incomes,
                 expense: expenses,
               ),
@@ -107,13 +106,12 @@ class StatisticsCard extends StatelessWidget with BaseSingleton {
                             children: [
                               Text(
                                 incomes?[index].amount.toString() ??
-                                    expenses?[index].amount.toString() ??
-                                    '0',
+                                    '-${expenses?[index].amount}',
                                 style: walletTextTheme.textTheme.bodyText1,
                               ),
                               Icon(
-                                _account
-                                    .currencyUnitIconSelector(_account.currencyUnit),
+                                account
+                                    .currencyUnitIconSelector(account.currencyUnit),
                                 size: 16,
                               ),
                             ],

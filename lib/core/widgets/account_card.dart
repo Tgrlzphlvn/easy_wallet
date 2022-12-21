@@ -123,7 +123,7 @@ class AccountCard extends StatelessWidget with BaseSingleton {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Text(
-          account.accountNumberValidatator(),
+          account.accounHolderName,
           style: context.textTheme.headline4,
         ),
       ],

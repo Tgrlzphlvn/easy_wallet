@@ -16,18 +16,18 @@ class StatisticChart extends StatelessWidget with BaseSingleton {
 
   @override
   Widget build(BuildContext context) {
-    return expense == null
-        ? SfCartesianChart(
-            tooltipBehavior: _tooltipBehavior,
-            primaryXAxis: CategoryAxis(
-              labelStyle: TextStyle(fontSize: 8, color: walletColors.eerieBlack),
-            ),
-            primaryYAxis: NumericAxis(
-              labelStyle: TextStyle(fontSize: 8, color: walletColors.eerieBlack),
-              rangePadding: ChartRangePadding.none,
-              numberFormat: NumberFormat.compact(),
-            ),
-            series: <CartesianSeries>[
+    return SfCartesianChart(
+      tooltipBehavior: _tooltipBehavior,
+      primaryXAxis: CategoryAxis(
+        labelStyle: TextStyle(fontSize: 8, color: walletColors.eerieBlack),
+      ),
+      primaryYAxis: NumericAxis(
+        labelStyle: TextStyle(fontSize: 8, color: walletColors.eerieBlack),
+        rangePadding: ChartRangePadding.none,
+        numberFormat: NumberFormat.compact(),
+      ),
+      series: expense == null
+          ? <CartesianSeries>[
               ColumnSeries<Income, String>(
                 dataSource: income ?? [],
                 xValueMapper: (data, index) => data.incomeName,
@@ -35,18 +35,8 @@ class StatisticChart extends StatelessWidget with BaseSingleton {
                 color: walletColors.morningBlue,
                 name: 'Income',
               ),
-            ],
-          )
-        : SfCartesianChart(
-            primaryXAxis: CategoryAxis(
-              labelStyle: TextStyle(fontSize: 8, color: walletColors.eerieBlack),
-            ),
-            primaryYAxis: NumericAxis(
-              labelStyle: TextStyle(fontSize: 8, color: walletColors.eerieBlack),
-              rangePadding: ChartRangePadding.none,
-              numberFormat: NumberFormat.compact(),
-            ),
-            series: <CartesianSeries>[
+            ]
+          : <CartesianSeries>[
               ColumnSeries<Expense, String>(
                 dataSource: expense ?? [],
                 xValueMapper: (data, index) => data.productName,
@@ -55,6 +45,6 @@ class StatisticChart extends StatelessWidget with BaseSingleton {
                 name: 'Expense',
               )
             ],
-          );
+    );
   }
 }

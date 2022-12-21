@@ -1,6 +1,6 @@
 import 'package:easy_wallet_v2/core/base/base_singleton.dart';
 import 'package:easy_wallet_v2/core/localization/localization_helper.dart';
-import 'package:easy_wallet_v2/core/widgets/list_card.dart';
+import 'package:easy_wallet_v2/core/widgets/shopping_list_card.dart';
 import 'package:easy_wallet_v2/feature/model/shopping.dart';
 import 'package:easy_wallet_v2/feature/view/pages/shopping/sheets/add_shopping_list_sheet.dart';
 import 'package:easy_wallet_v2/feature/view/pages/shopping/shopping_list_page.dart';
@@ -40,9 +40,7 @@ class ListsView extends StatelessWidget with BaseSingleton {
           ),
         ],
       ),
-      body: Provider.of<AddShoppingListViewModel>(context, listen: false)
-              .shoppingLists
-              .isEmpty
+      body: Provider.of<AddShoppingListViewModel>(context).shoppingLists.isEmpty
           ? _emptyLottie(context)
           : _shoppinglists(context),
     );
@@ -60,7 +58,8 @@ class ListsView extends StatelessWidget with BaseSingleton {
           child: ListsCard(
             shoppingList: shoppingList,
             onPressed: () {
-            Provider.of<AddShoppingListViewModel>(context, listen: false).getSelectedIndexList(index);
+              Provider.of<AddShoppingListViewModel>(context, listen: false)
+                  .getSelectedIndexList(index);
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => ShoppingListPage(

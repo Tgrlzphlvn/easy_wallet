@@ -10,6 +10,7 @@ import 'package:easy_wallet_v2/feature/view/home/statics_view.dart';
 import 'package:easy_wallet_v2/feature/view/pages/account/add_income_or_expense_view.dart';
 import 'package:easy_wallet_v2/feature/viewmodel/add_shopping_list_view_model.dart';
 import 'package:easy_wallet_v2/feature/viewmodel/home_view_model.dart';
+import 'package:easy_wallet_v2/feature/viewmodel/statistics_view_model.dart';
 import 'package:easy_wallet_v2/product/extensions/ui_settings_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -85,8 +86,14 @@ class _TabViewState extends State<TabView> with BaseSingleton {
           if (index == 0) {
             Provider.of<HomeViewModel>(context, listen: false).getAccounts();
             Provider.of<HomeViewModel>(context, listen: false).getIncomes();
+          } else if (index == 1) {
+            Provider.of<StatisticViewModel>(context, listen: false)
+                .getTheOrderedIncomeList();
+            Provider.of<StatisticViewModel>(context, listen: false)
+                .getTheOrderedExpenseList();
           } else if (index == 2) {
-            Provider.of<AddShoppingListViewModel>(context, listen: false).getShoppingLists();
+            Provider.of<AddShoppingListViewModel>(context, listen: false)
+                .getShoppingLists();
           }
         },
       ),

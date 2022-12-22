@@ -4,8 +4,7 @@ class AccountMock {
   static List<Account> mockAccount = [
     Account(
       accountName: 'mockmockmockmock321',
-      accounHolderName: 'Empty Account Holder Name',
-      accountNumber: '12345',
+      accounHolderName: 'Your name',
       currencyUnit: CurrencyUnit.americanDollar,
       income: [],
       expenses: [],

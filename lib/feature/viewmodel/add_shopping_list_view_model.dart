@@ -37,6 +37,7 @@ class AddShoppingListViewModel extends ChangeNotifier {
   Future<void> getShoppingLists() async {
     await _shoppingCache.init();
     shoppingLists = _shoppingCache.getObjects() ?? [];
+    print(shoppingLists.length);
     notifyListeners();
   }
 

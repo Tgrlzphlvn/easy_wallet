@@ -33,7 +33,9 @@ class ProviderController {
       create: (context) => AddShoppingListViewModel()..getShoppingLists(),
     ),
     ChangeNotifierProvider<StatisticViewModel>(
-      create: (context) => StatisticViewModel()..getTheOrderedIncomeList(),
+      create: (context) => StatisticViewModel()
+        ..getTheOrderedIncomeList()
+        ..getTheOrderedExpenseList(),
     ),
   ];
 }

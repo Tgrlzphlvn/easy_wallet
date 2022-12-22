@@ -17,15 +17,7 @@ class ShoppingCache extends HiveManager<ShoppingList> {
 
   @override
   Future<void> addObject(ShoppingList object) async {
-    List<ShoppingList> list = getObjects() as List<ShoppingList>;
-    for (var i in list) {
-      if (object.id == i.id) {
-        await deleteObject(i);
-        await box?.put(object.id, object);
-      } else {
-        await box?.put(object.id, object);
-      }
-    }
+    await box?.put(object.id, object);
   }
 
   @override

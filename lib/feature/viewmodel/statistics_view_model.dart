@@ -14,17 +14,25 @@ class StatisticViewModel extends ChangeNotifier {
     await _accountCache.init();
     account = _accountCache.getObjects() as List<Account>;
 
-    incomes = account[0].income;
+    if (account.isNotEmpty) {
+      incomes = account[0].income;
 
-    incomes.sort((x, y) => y.amount.compareTo(x.amount));
+      incomes.sort((x, y) => y.amount.compareTo(x.amount));
+    } else {
+      incomes = [];
+    }
   }
 
   Future<void> getTheOrderedExpenseList() async {
     await _accountCache.init();
     account = _accountCache.getObjects() as List<Account>;
 
-    expenses = account[0].expenses;
+    if (account.isNotEmpty) {
+      expenses = account[0].expenses;
 
-    expenses.sort((x, y) => y.amount.compareTo(x.amount));
+      expenses.sort((x, y) => y.amount.compareTo(x.amount));
+    } else {
+      expenses = [];
+    }
   }
 }

@@ -40,7 +40,9 @@ class ListsView extends StatelessWidget with BaseSingleton {
           ),
         ],
       ),
-      body: Provider.of<AddShoppingListViewModel>(context).shoppingLists.isEmpty
+      body: Provider.of<AddShoppingListViewModel>(context, listen: false)
+              .shoppingLists
+              .isEmpty
           ? _emptyLottie(context)
           : _shoppinglists(context),
     );

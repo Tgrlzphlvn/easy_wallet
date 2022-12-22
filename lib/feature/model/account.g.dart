@@ -19,10 +19,9 @@ class AccountAdapter extends TypeAdapter<Account> {
     return Account(
       accountName: fields[2] as String,
       accounHolderName: fields[3] as String,
-      accountNumber: fields[4] as String,
-      currencyUnit: fields[5] as CurrencyUnit,
-      expenses: (fields[6] as List).cast<Expense>(),
-      income: (fields[7] as List).cast<Income>(),
+      currencyUnit: fields[4] as CurrencyUnit,
+      expenses: (fields[5] as List).cast<Expense>(),
+      income: (fields[6] as List).cast<Income>(),
     )
       ..id = fields[0] as String
       ..createdTime = fields[1] as DateTime;
@@ -31,7 +30,7 @@ class AccountAdapter extends TypeAdapter<Account> {
   @override
   void write(BinaryWriter writer, Account obj) {
     writer
-      ..writeByte(8)
+      ..writeByte(7)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -41,12 +40,10 @@ class AccountAdapter extends TypeAdapter<Account> {
       ..writeByte(3)
       ..write(obj.accounHolderName)
       ..writeByte(4)
-      ..write(obj.accountNumber)
-      ..writeByte(5)
       ..write(obj.currencyUnit)
-      ..writeByte(6)
+      ..writeByte(5)
       ..write(obj.expenses)
-      ..writeByte(7)
+      ..writeByte(6)
       ..write(obj.income);
   }
 

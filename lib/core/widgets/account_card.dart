@@ -1,6 +1,7 @@
 import 'package:easy_wallet_v2/core/base/base_singleton.dart';
 import 'package:easy_wallet_v2/core/localization/localization_helper.dart';
 import 'package:easy_wallet_v2/feature/model/account.dart';
+import 'package:easy_wallet_v2/product/enums/asset_helper_enum.dart';
 import 'package:easy_wallet_v2/product/extensions/account_extensions.dart';
 import 'package:easy_wallet_v2/product/utils/amount_validator.dart';
 import 'package:flutter/material.dart';
@@ -68,7 +69,7 @@ class AccountCard extends StatelessWidget with BaseSingleton {
           width: context.widthGenerator(0.25),
           height: context.heightGenerator(0.06),
           child: Image.asset(
-            assetHelper.getPaymetSystemLogoPNG(account.cardImageController()),
+            assetHelper.getPaymetSystemLogoPNG(AssetHelperEnum.defaultLogo),
           ),
         ),
       ],

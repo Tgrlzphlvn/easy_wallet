@@ -21,6 +21,9 @@ dependencies:
   # Localization
   easy_localization: ^3.0.1
 
+  # Google
+  #google_mobile_ads: ^2.3.0
+
   # Utility
   uuid: ^3.0.6
   lottie: ^1.4.3

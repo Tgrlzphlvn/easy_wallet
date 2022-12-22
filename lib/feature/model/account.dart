@@ -16,18 +16,15 @@ class Account extends HiveObject {
   @HiveField(3)
   final String accounHolderName;
   @HiveField(4)
-  final String accountNumber;
-  @HiveField(5)
   final CurrencyUnit currencyUnit;
-  @HiveField(6)
+  @HiveField(5)
   final List<Expense> expenses;
-  @HiveField(7)
+  @HiveField(6)
   final List<Income> income;
 
   Account({
     required this.accountName,
     required this.accounHolderName,
-    required this.accountNumber,
     required this.currencyUnit,
     required this.expenses,
     required this.income,
@@ -41,7 +38,6 @@ class Account extends HiveObject {
     return Account(
       accountName: accountName,
       accounHolderName: accounHolderName,
-      accountNumber: accountNumber,
       currencyUnit: currencyUnit,
       expenses: [],
       income: [],

@@ -26,7 +26,7 @@ class _TabViewState extends State<TabView> with BaseSingleton {
   int currentIndex = 0;
 
   final pageList = [
-    const HomeView(),
+    HomeView(),
     const StaticsView(),
     const ListsView(),
     const SettingsView()

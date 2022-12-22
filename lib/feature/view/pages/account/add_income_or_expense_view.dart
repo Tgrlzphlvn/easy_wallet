@@ -83,62 +83,58 @@ class AddIncomeOrExpensePage extends StatelessWidget with BaseSingleton {
               ),
               Padding(
                 padding: context.paddingAllHigh,
-                child: WalletOutlineButton(
-                  title: LocalizationHelper.save,
-                  onPressed: _nameTextFieldController.text.isEmpty ||
-                          _amountTextFieldController.text.isEmpty
-                      ? null
-                      : () async {
-                          Provider.of<AddIncomeOrExpenseViewModel>(context,
-                                  listen: false)
-                              .addIncomeOrExpense(
-                            Account(
-                              accountName: _account.accountName,
-                              accounHolderName: _account.accounHolderName,
-                              accountNumber: _account.accountNumber,
-                              currencyUnit: _account.currencyUnit,
-                              expenses: incomeOrExpense.isThis == true
-                                  ? _account.expenses +
-                                      [
-                                        Expense(
-                                            Provider.of<AddIncomeOrExpenseViewModel>(
-                                                    context,
-                                                    listen: false)
-                                                .chosenExpenseType,
-                                            _nameTextFieldController.text,
-                                            int.parse(
-                                                _amountTextFieldController.text))
-                                      ]
-                                  : _account.expenses,
-                              income: incomeOrExpense.isThis == false
-                                  ? _account.income +
-                                      [
-                                        Income(
-                                          _nameTextFieldController.text,
-                                          Provider.of<AddIncomeOrExpenseViewModel>(
-                                                  context,
-                                                  listen: false)
-                                              .chosenIncomeType,
-                                          int.parse(_amountTextFieldController.text),
-                                        ),
-                                      ]
-                                  : _account.income,
-                            ),
-                          );
-                          Provider.of<HomeViewModel>(context, listen: false)
-                              .getAccounts();
-                          Provider.of<HomeViewModel>(context, listen: false)
-                              .getIncomes();
-                          Provider.of<HomeViewModel>(context, listen: false)
-                              .getExpenses();
-                          Navigator.of(context).pop();
-                        },
-                ),
+                child: _saveButton(context, _account),
               ),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  WalletOutlineButton _saveButton(BuildContext context, Account _account) {
+    return WalletOutlineButton(
+      title: LocalizationHelper.save,
+      onPressed: _nameTextFieldController.text.isEmpty ||
+              _amountTextFieldController.text.isEmpty
+          ? null
+          : () async {
+              Provider.of<AddIncomeOrExpenseViewModel>(context, listen: false)
+                  .addIncomeOrExpense(
+                Account(
+                  accountName: _account.accountName,
+                  accounHolderName: _account.accounHolderName,
+                  currencyUnit: _account.currencyUnit,
+                  expenses: incomeOrExpense.isThis == true
+                      ? _account.expenses +
+                          [
+                            Expense(
+                                Provider.of<AddIncomeOrExpenseViewModel>(context,
+                                        listen: false)
+                                    .chosenExpenseType,
+                                _nameTextFieldController.text,
+                                int.parse(_amountTextFieldController.text))
+                          ]
+                      : _account.expenses,
+                  income: incomeOrExpense.isThis == false
+                      ? _account.income +
+                          [
+                            Income(
+                              _nameTextFieldController.text,
+                              Provider.of<AddIncomeOrExpenseViewModel>(context,
+                                      listen: false)
+                                  .chosenIncomeType,
+                              int.parse(_amountTextFieldController.text),
+                            ),
+                          ]
+                      : _account.income,
+                ),
+              );
+              Provider.of<HomeViewModel>(context, listen: false).getAccounts();
+              Provider.of<HomeViewModel>(context, listen: false).getIncomes();
+              Provider.of<HomeViewModel>(context, listen: false).getExpenses();
+              Navigator.of(context).pop();
+            },
     );
   }
 

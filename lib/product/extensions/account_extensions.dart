@@ -29,17 +29,17 @@ extension AccountExtension on Account {
     return subIncomes() - subExpenses();
   }
 
-  AssetHelperEnum cardImageController() {
-    String number = accountNumber.toString();
-    switch (number.characters.first) {
-      case '4':
-        return AssetHelperEnum.visa;
-      case '5':
-        return AssetHelperEnum.mastercard;
-      default:
-        return AssetHelperEnum.defaultLogo;
-    }
-  }
+  // AssetHelperEnum cardImageController() {
+  //   String number = accountNumber.toString();
+  //   switch (number.characters.first) {
+  //     case '4':
+  //       return AssetHelperEnum.visa;
+  //     case '5':
+  //       return AssetHelperEnum.mastercard;
+  //     default:
+  //       return AssetHelperEnum.defaultLogo;
+  //   }
+  // }
 
   String getDayMonthYear() {
     return '${createdTime.day}.${createdTime.month}.${createdTime.year}';
@@ -49,16 +49,16 @@ extension AccountExtension on Account {
     return '${createdTime.month}.${createdTime.year}';
   }
 
-  String accountNumberValidatator() {
-    String firstNumber = accountNumber.characters.first;
-    List<String> otherNumbers = accountNumber.characters.toList();
-    String lastNumbers = '';
-    otherNumbers.removeAt(0);
-    otherNumbers.forEach((element) {
-      lastNumbers += element.toString();
-    });
-    return '$firstNumber*** **** **** $lastNumbers';
-  }
+  // String accountNumberValidatator() {
+  //   String firstNumber = accountNumber.characters.first;
+  //   List<String> otherNumbers = accountNumber.characters.toList();
+  //   String lastNumbers = '';
+  //   otherNumbers.removeAt(0);
+  //   otherNumbers.forEach((element) {
+  //     lastNumbers += element.toString();
+  //   });
+  //   return '$firstNumber*** **** **** $lastNumbers';
+  // }
 
   IconData currencyUnitIconSelector(CurrencyUnit currencyUnit) {
     switch (currencyUnit) {

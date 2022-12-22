@@ -51,10 +51,6 @@ class AddAccountPage extends StatelessWidget with BaseSingleton {
               ),
               Padding(
                 padding: context.walletCardWidgetsPaddingHigh,
-                child: _accountNumberTextFormField(),
-              ),
-              Padding(
-                padding: context.walletCardWidgetsPaddingHigh,
                 child: _currencyUnitDropDownButtonRow(context),
               ),
               Padding(
@@ -111,21 +107,6 @@ class AddAccountPage extends StatelessWidget with BaseSingleton {
       inputFormatters: [
         FilteringTextInputFormatter.singleLineFormatter,
         LengthLimitingTextInputFormatter(24),
-      ],
-    );
-  }
-
-  WalletTextFormField _accountNumberTextFormField() {
-    return WalletTextFormField(
-      icon: Icons.numbers,
-      label: LocalizationHelper.accountNumber,
-      controller: _accountNumberController,
-      keyboardType: TextInputType.number,
-      action: TextInputAction.done,
-      nextFocusValue: 5,
-      inputFormatters: [
-        FilteringTextInputFormatter.digitsOnly,
-        LengthLimitingTextInputFormatter(5),
       ],
     );
   }

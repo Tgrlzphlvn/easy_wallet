@@ -1,3 +1,4 @@
+import 'package:easy_wallet_v2/core/admob/google_admob.dart';
 import 'package:easy_wallet_v2/core/base/base_singleton.dart';
 import 'package:easy_wallet_v2/core/localization/localization_helper.dart';
 import 'package:easy_wallet_v2/core/widgets/account_card.dart';
@@ -11,16 +12,23 @@ import 'package:easy_wallet_v2/product/extensions/ui_settings_extensions.dart';
 import 'package:provider/provider.dart';
 
 class HomeView extends StatelessWidget with BaseSingleton {
-  const HomeView({Key? key}) : super(key: key);
+  HomeView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    //final _walletAdMob = Provider.of<WalletGoogleAdMob>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         title: Text(LocalizationHelper.wallet),
       ),
       body: Column(
         children: [
+          // Container(
+          //   height: _walletAdMob.staticAd.size.height.toDouble(),
+          //   width: _walletAdMob.staticAd.size.width.toDouble(),
+          //   alignment: Alignment.bottomCenter,
+          //   child: AdWidget(ad: _walletAdMob.staticAd),
+          // ),
           SizedBox(
             height: context.heightGenerator(0.3),
             child: _accountCard(context),
